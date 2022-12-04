@@ -88,5 +88,9 @@
       "not dead",
       "not op_mini all"
     ]
+  },
+  "engines": {
+    "node": "16.18.1",
+    "npm":"8.19.2"
   }
 }
