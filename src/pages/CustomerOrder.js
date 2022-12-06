@@ -1,5 +1,5 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React from "react";
+import { useParams } from "react-router-dom";
 import {
   Table,
   TableHeader,
@@ -7,15 +7,15 @@ import {
   TableFooter,
   TableContainer,
   Pagination,
-} from '@windmill/react-ui';
-import { IoBagHandle } from 'react-icons/io5';
+} from "@windmill/react-ui";
+import { IoBagHandle } from "react-icons/io5";
 
-import useAsync from '../hooks/useAsync';
-import useFilter from '../hooks/useFilter';
-import OrderServices from '../services/OrderServices';
-import Loading from '../components/preloader/Loading';
-import PageTitle from '../components/Typography/PageTitle';
-import CustomerOrderTable from '../components/customer/CustomerOrderTable';
+import useAsync from "../hooks/useAsync";
+import useFilter from "../hooks/useFilter";
+import OrderServices from "../services/OrderServices";
+import Loading from "../components/preloader/Loading";
+import PageTitle from "../components/Typography/PageTitle";
+import CustomerOrderTable from "../components/customer/CustomerOrderTable";
 
 const CustomerOrder = () => {
   const { id } = useParams();
@@ -54,8 +54,6 @@ const CustomerOrder = () => {
                 <TableCell>Time</TableCell>
                 <TableCell>Shipping Address</TableCell>
                 <TableCell>Phone</TableCell>
-                <TableCell>Method</TableCell>
-                <TableCell>Amount</TableCell>
                 <TableCell className="text-center">Status</TableCell>
                 <TableCell className="text-center">Actions</TableCell>
               </tr>

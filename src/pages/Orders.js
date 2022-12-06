@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { CSVDownloader } from 'react-papaparse';
+import React, { useContext } from "react";
+import { CSVDownloader } from "react-papaparse";
 import {
   Table,
   TableHeader,
@@ -11,18 +11,18 @@ import {
   Card,
   CardBody,
   Pagination,
-} from '@windmill/react-ui';
-import { IoCloudDownloadOutline } from 'react-icons/io5';
+} from "@windmill/react-ui";
+import { IoCloudDownloadOutline } from "react-icons/io5";
 
-import orderData from '../utils/orders';
-import useAsync from '../hooks/useAsync';
-import useFilter from '../hooks/useFilter';
-import NotFound from '../components/table/NotFound';
-import OrderServices from '../services/OrderServices';
-import Loading from '../components/preloader/Loading';
-import OrderTable from '../components/order/OrderTable';
-import PageTitle from '../components/Typography/PageTitle';
-import { SidebarContext } from '../context/SidebarContext';
+import orderData from "../utils/orders";
+import useAsync from "../hooks/useAsync";
+import useFilter from "../hooks/useFilter";
+import NotFound from "../components/table/NotFound";
+import OrderServices from "../services/OrderServices";
+import Loading from "../components/preloader/Loading";
+import OrderTable from "../components/order/OrderTable";
+import PageTitle from "../components/Typography/PageTitle";
+import { SidebarContext } from "../context/SidebarContext";
 
 const Orders = () => {
   const {
@@ -96,7 +96,7 @@ const Orders = () => {
               </Select>
             </div>
             <div>
-              <CSVDownloader data={orderData} filename={'orders'}>
+              <CSVDownloader data={orderData} filename={"orders"}>
                 <button
                   type="button"
                   className="flex items-center justify-center text-sm leading-5 h-12 text-center transition-colors duration-150 font-medium focus:outline-none px-6 py-2 rounded-md text-white bg-green-500 border border-transparent active:bg-green-600 hover:bg-green-600 focus:ring focus:ring-purple-300 w-auto"
@@ -123,8 +123,7 @@ const Orders = () => {
                 <TableCell>Time</TableCell>
                 <TableCell>Shipping Address</TableCell>
                 <TableCell>Phone</TableCell>
-                <TableCell>Method</TableCell>
-                <TableCell>Amount</TableCell>
+                <TableCell>Delivery/Pickup</TableCell>
                 <TableCell className="text-center">Status</TableCell>
                 <TableCell className="text-center">Action</TableCell>
                 <TableCell className="text-right">Invoice</TableCell>

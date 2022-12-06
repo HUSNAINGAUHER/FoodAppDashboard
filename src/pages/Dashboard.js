@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import * as dayjs from 'dayjs';
-import isBetween from 'dayjs/plugin/isBetween';
+import React, { useContext } from "react";
+import * as dayjs from "dayjs";
+import isBetween from "dayjs/plugin/isBetween";
 
 import {
   Table,
@@ -9,21 +9,21 @@ import {
   TableFooter,
   TableContainer,
   Pagination,
-} from '@windmill/react-ui';
-import { ImStack, ImCreditCard } from 'react-icons/im';
-import { FiShoppingCart, FiTruck, FiRefreshCw, FiCheck } from 'react-icons/fi';
+} from "@windmill/react-ui";
+import { ImStack, ImCreditCard } from "react-icons/im";
+import { FiShoppingCart, FiTruck, FiRefreshCw, FiCheck } from "react-icons/fi";
 
-import useAsync from '../hooks/useAsync';
-import useFilter from '../hooks/useFilter';
-import OrderServices from '../services/OrderServices';
-import Loading from '../components/preloader/Loading';
-import CardItem from '../components/dashboard/CardItem';
-import PageTitle from '../components/Typography/PageTitle';
-import OrderTable from '../components/dashboard/OrderTable';
-import CardItemTwo from '../components/dashboard/CardItemTwo';
-import { SidebarContext } from '../context/SidebarContext';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import useAsync from "../hooks/useAsync";
+import useFilter from "../hooks/useFilter";
+import OrderServices from "../services/OrderServices";
+import Loading from "../components/preloader/Loading";
+import CardItem from "../components/dashboard/CardItem";
+import PageTitle from "../components/Typography/PageTitle";
+import OrderTable from "../components/dashboard/OrderTable";
+import CardItemTwo from "../components/dashboard/CardItemTwo";
+import { SidebarContext } from "../context/SidebarContext";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Dashboard = () => {
   dayjs.extend(isBetween);
@@ -48,7 +48,7 @@ const Dashboard = () => {
     );
     setTodayOrder(todayOrderTotal);
     data?.weeklySaleReport?.reduce((res, value) => {
-      let onlyDate = value.createdAt.split('T')[0];
+      let onlyDate = value.createdAt.split("T")[0];
 
       if (!res[onlyDate]) {
         res[onlyDate] = { date: onlyDate, total: 0, order: 0 };
@@ -63,8 +63,6 @@ const Dashboard = () => {
   return (
     <>
       <PageTitle>Dashboard Overview</PageTitle>
-
-  
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <CardItem
@@ -96,8 +94,6 @@ const Dashboard = () => {
         />
       </div>
 
-      
-
       <PageTitle>Recent Order</PageTitle>
       {loading && <Loading loading={loading} />}
       {dataTable && !loading && (
@@ -108,8 +104,7 @@ const Dashboard = () => {
                 <TableCell>Order Time</TableCell>
                 <TableCell>Delivery Address</TableCell>
                 <TableCell>Phone</TableCell>
-                <TableCell>Payment method</TableCell>
-                <TableCell>Order amount</TableCell>
+                <TableCell>Delivery/Pickup</TableCell>
                 <TableCell>Status</TableCell>
               </tr>
             </TableHeader>

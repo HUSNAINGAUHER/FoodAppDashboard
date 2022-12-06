@@ -1,12 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import * as dayjs from 'dayjs';
-import { TableCell, TableBody, TableRow } from '@windmill/react-ui';
+import React from "react";
+import { Link } from "react-router-dom";
+import * as dayjs from "dayjs";
+import { TableCell, TableBody, TableRow } from "@windmill/react-ui";
 
-import Status from '../table/Status';
-import { FiZoomIn } from 'react-icons/fi';
-import Tooltip from '../tooltip/Tooltip';
-import SelectStatus from '../form/SelectStatus';
+import Status from "../table/Status";
+import { FiZoomIn } from "react-icons/fi";
+import Tooltip from "../tooltip/Tooltip";
+import SelectStatus from "../form/SelectStatus";
 
 const OrderTable = ({ orders }) => {
   return (
@@ -19,7 +19,7 @@ const OrderTable = ({ orders }) => {
             </TableCell>
             <TableCell>
               <span className="text-sm">
-                {dayjs(order.createdAt).format('MMM D, YYYY')}
+                {dayjs(order.createdAt).format("MMM D, YYYY")}
               </span>
             </TableCell>
 
@@ -27,20 +27,15 @@ const OrderTable = ({ orders }) => {
               <span className="text-sm">{order.address.substring(0, 25)}</span>
             </TableCell>
             <TableCell>
-              {' '}
-              <span className="text-sm">{order.contact}</span>{' '}
+              {" "}
+              <span className="text-sm">{order.contact}</span>{" "}
             </TableCell>
+
             <TableCell>
-              <span className="text-sm font-semibold">
-                {order.paymentMethod}
-              </span>
+              {" "}
+              <span className="text-sm">{order.shippingOption}</span>{" "}
             </TableCell>
-            <TableCell>
-              {' '}
-              <span className="text-sm font-semibold">
-                ${Math.round(order.total)}.00
-              </span>{' '}
-            </TableCell>
+
             <TableCell className="text-center text-xs">
               <Status status={order.status} />
             </TableCell>
@@ -49,7 +44,7 @@ const OrderTable = ({ orders }) => {
             </TableCell>
             <TableCell className="text-right flex justify-end">
               <div className="p-2 cursor-pointer text-gray-400 hover:text-green-600">
-                {' '}
+                {" "}
                 <Link to={`/order/${order._id}`}>
                   <Tooltip
                     id="view"

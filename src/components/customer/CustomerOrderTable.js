@@ -1,9 +1,9 @@
-import React from 'react';
-import * as dayjs from 'dayjs';
-import { TableCell, TableBody, TableRow } from '@windmill/react-ui';
+import React from "react";
+import * as dayjs from "dayjs";
+import { TableCell, TableBody, TableRow } from "@windmill/react-ui";
 
-import Status from '../table/Status';
-import SelectStatus from '../form/SelectStatus';
+import Status from "../table/Status";
+import SelectStatus from "../form/SelectStatus";
 
 const CustomerOrderTable = ({ orders }) => {
   return (
@@ -18,7 +18,7 @@ const CustomerOrderTable = ({ orders }) => {
             </TableCell>
             <TableCell>
               <span className="text-sm">
-                {dayjs(order.createdAt).format('MMM D, YYYY')}
+                {dayjs(order.createdAt).format("MMM D, YYYY")}
               </span>
             </TableCell>
 
@@ -26,20 +26,10 @@ const CustomerOrderTable = ({ orders }) => {
               <span className="text-sm">{order.address}</span>
             </TableCell>
             <TableCell>
-              {' '}
-              <span className="text-sm">{order.contact}</span>{' '}
+              {" "}
+              <span className="text-sm">{order.contact}</span>{" "}
             </TableCell>
-            <TableCell>
-              <span className="text-sm font-semibold">
-                {order.paymentMethod}
-              </span>
-            </TableCell>
-            <TableCell>
-              {' '}
-              <span className="text-sm font-semibold">
-                ${Math.round(order.total)}.00
-              </span>{' '}
-            </TableCell>
+
             <TableCell className="text-center">
               <Status status={order.status} />
             </TableCell>
