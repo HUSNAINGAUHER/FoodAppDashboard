@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   Table,
   TableHeader,
@@ -11,6 +11,7 @@ import {
   Pagination,
   Button,
 } from "@windmill/react-ui";
+import * as dayjs from "dayjs";
 
 import useAsync from "../hooks/useAsync";
 import useFilter from "../hooks/useFilter";
@@ -18,12 +19,28 @@ import NotFound from "../components/table/NotFound";
 import UserServices from "../services/UserServices";
 import Loading from "../components/preloader/Loading";
 import PageTitle from "../components/Typography/PageTitle";
-import CustomerTable from "../components/customer/CustomerTable";
+import CustomerTable from "../components/customer/DistrubutionTable";
+import DistributionService from "../services/DistributionService";
+import CardItem from "../components/dashboard/CardItem";
 import { SidebarContext } from "../context/SidebarContext";
-import { FiPlus } from "react-icons/fi";
 
-const Customers = () => {
-  const { data, loading } = useAsync(UserServices.getAllUsers);
+import MainDrawer from "../components/drawer/MainDrawer";
+import ProductDrawer from "../components/drawer/DistrubutionDrawer";
+
+import {
+  FiShoppingCart,
+  FiTruck,
+  FiRefreshCw,
+  FiCheck,
+  FiPlus,
+} from "react-icons/fi";
+
+const Distribution = () => {
+  const { data, loading } = useAsync(DistributionService.getAllDistribution);
+  const { data: current } = useAsync(
+    DistributionService.getCurrentDistribution
+  );
+  const { data: next } = useAsync(DistributionService.getNextDistribution);
 
   const {
     userRef,
@@ -51,29 +68,34 @@ const Customers = () => {
 
   return (
     <>
-      <PageTitle>Customers</PageTitle>
-      <Card className="min-w-0 shadow-xs overflow-hidden bg-white dark:bg-gray-800 mb-5">
-        <CardBody>
-          <form
-            onSubmit={handleSubmitUser}
-            className="py-3 grid gap-4 lg:gap-6 xl:gap-6 md:flex xl:flex"
-          >
-            <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
-              <Input
-                ref={userRef}
-                className="border h-12 text-sm focus:outline-none block w-full bg-gray-100 border-transparent focus:bg-white"
-                type="search"
-                name="search"
-                placeholder="Search by name/email/phone"
-              />
-              <button
-                type="submit"
-                className="absolute right-0 top-0 mt-5 mr-1"
-              ></button>
-            </div>
-          </form>
-        </CardBody>
-      </Card>
+      <PageTitle>Distribution</PageTitle>
+
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-2 mb-10">
+        <CardItem
+          title="Current Distribution"
+          Icon={FiShoppingCart}
+          size={"sm"}
+          quantity={
+            current
+              ? `${dayjs(current[0]?.start).format("MMM D, YYYY")} -
+                ${dayjs(current[0]?.end).format("MMM D, YYYY")}`
+              : ""
+          }
+          className="text-orange-600 dark:text-orange-100 bg-orange-100 dark:bg-orange-50"
+        />
+        <CardItem
+          title="Next Distribution"
+          Icon={FiRefreshCw}
+          quantity={
+            next?.length
+              ? `${dayjs(next[0]?.start).format("MMM D, YYYY")} -
+                ${dayjs(next[0]?.end).format("MMM D, YYYY")}`
+              : ""
+          }
+          size="sm"
+          className="text-blue-600 dark:text-blue-100 bg-blue-100 dark:bg-blue-500"
+        />
+      </div>
 
       <div className="w-full md:w-56 lg:w-56 xl:w-56 my-5 flex-end float-right">
         <Button
@@ -86,7 +108,7 @@ const Customers = () => {
           <span className="mr-3">
             <FiPlus />
           </span>
-          Add Customer
+          Add Distribution
         </Button>
       </div>
 
@@ -98,10 +120,9 @@ const Customers = () => {
             <TableHeader>
               <tr>
                 <TableCell>ID</TableCell>
-                <TableCell>Joining Date</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell>Phone</TableCell>
+                <TableCell>Start Date</TableCell>
+                <TableCell>End Date</TableCell>
+                <TableCell>Limit</TableCell>
                 <TableCell className="text-right">Actions</TableCell>
               </tr>
             </TableHeader>
@@ -127,4 +148,4 @@ const Customers = () => {
   );
 };
 
-export default Customers;
+export default Distribution;

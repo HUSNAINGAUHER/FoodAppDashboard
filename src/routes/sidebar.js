@@ -8,7 +8,7 @@ import {
   FiList,
   FiSettings,
   FiSlack,
-} from 'react-icons/fi';
+} from "react-icons/fi";
 /**
  * ⚠ These are used just to render the Sidebar!
  * You can include any link here, local or external.
@@ -18,42 +18,45 @@ import {
  */
 const sidebar = [
   {
-    path: '/dashboard', // the url
+    path: "/dashboard", // the url
     icon: FiGrid, // icon
-    name: 'Dashboard', // name that appear in Sidebar
+    name: "Dashboard", // name that appear in Sidebar
   },
   {
-    path: '/products',
+    path: "/products",
     icon: FiShoppingBag,
-    name: 'Products',
+    name: "Products",
   },
   {
-    path: '/category',
+    path: "/category",
     icon: FiList,
-    name: 'Category',
+    name: "Category",
   },
   {
-    path: '/customers',
+    path: "/customers",
     icon: FiUsers,
-    name: 'Customers',
+    name: "Customers",
   },
   {
-    path: '/orders',
+    path: "/orders",
     icon: FiCompass,
-    name: 'Orders',
+    name: "Orders",
   },
   {
-    path: '/our-staff',
+    path: "/distributions",
+    icon: FiSlack,
+    name: "Distributions",
+  },
+  {
+    path: "/our-staff",
     icon: FiUser,
-    name: 'Our Staff',
+    name: "Our Staff",
   },
   {
-    path: '/setting',
+    path: "/setting",
     icon: FiSettings,
-    name: 'Setting',
+    name: "Setting",
   },
-
- 
 ];
 
 export default sidebar;

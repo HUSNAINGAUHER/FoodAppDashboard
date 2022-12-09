@@ -8,8 +8,16 @@ const UserServices = {
     return requests.get(`/user/${id}`);
   },
 
+  addUser(data) {
+    return requests.post(`/user/register/token`, { token: data.token });
+  },
+
   deleteUser(id) {
     return requests.delete(`/user/${id}`);
+  },
+
+  updateCustomer(id, data) {
+    return requests.put(`/user/${id}`, { ...data });
   },
 };
 

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Select } from '@windmill/react-ui';
+import React from "react";
+import { Select } from "@windmill/react-ui";
 
 const SelectRole = ({ setRole, register, name, label }) => {
   return (

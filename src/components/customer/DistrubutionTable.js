@@ -7,25 +7,27 @@ import { FiZoomIn, FiTrash2, FiEdit } from "react-icons/fi";
 import Tooltip from "../tooltip/Tooltip";
 import MainModal from "../modal/MainModal";
 import { SidebarContext } from "../../context/SidebarContext";
+import useToggleDrawer from "../../hooks/useToggleDrawer";
 import MainDrawer from "../drawer/MainDrawer";
-import CategoryDrawer from "../drawer/CategoryDrawer";
-import ProductDrawer from "../drawer/CustomerDrawer";
+import CategoryDrawer from "../drawer/DistrubutionDrawer";
 
 const CustomerTable = ({ customers, customerId, setCustomerId }) => {
   const { toggleModal, toggleDrawer } = useContext(SidebarContext);
   const [title, setTitle] = useState("");
+
+  const { handleUpdate, serviceId, setServiceId } = useToggleDrawer();
 
   const handleModalOpen = (id, title) => {
     setCustomerId(id);
     toggleModal();
     setTitle(title);
   };
-
   return (
     <>
       <MainModal id={customerId} title={title} />
+
       <MainDrawer>
-        <ProductDrawer id={customerId} />
+        <CategoryDrawer id={customerId} />
       </MainDrawer>
       <TableBody>
         {customers?.map((user) => (
@@ -38,32 +40,20 @@ const CustomerTable = ({ customers, customerId, setCustomerId }) => {
             </TableCell>
             <TableCell>
               <span className="text-sm">
-                {dayjs(user.createdAt).format("MMM D, YYYY")}
+                {dayjs(user.start).format("MMM D, YYYY")}
               </span>
             </TableCell>
             <TableCell>
-              <span className="text-sm">{user.name}</span>
+              <span className="text-sm">
+                {dayjs(user.end).format("MMM D, YYYY")}
+              </span>
             </TableCell>
             <TableCell>
-              <span className="text-sm">{user.email}</span>{" "}
-            </TableCell>
-            <TableCell>
-              <span className="text-sm font-medium">{user.phone}</span>
+              <span className="text-sm">{user.limit}</span>{" "}
             </TableCell>
 
             <TableCell>
               <div className="flex justify-end text-right">
-                <div className="p-2 cursor-pointer text-gray-400 hover:text-green-600">
-                  {" "}
-                  <Link to={`/customer-order/${user._id}`}>
-                    <Tooltip
-                      id="view"
-                      Icon={FiZoomIn}
-                      title="View Order"
-                      bgColor="#34D399"
-                    />
-                  </Link>
-                </div>
                 <div className="p-2 cursor-pointer text-gray-400 hover:text-green-600">
                   {" "}
                   <div
@@ -75,7 +65,7 @@ const CustomerTable = ({ customers, customerId, setCustomerId }) => {
                     <Tooltip
                       id="view"
                       Icon={FiEdit}
-                      title="Edit Customer"
+                      title="Edit Distrubution"
                       bgColor="#34D399"
                     />
                   </div>

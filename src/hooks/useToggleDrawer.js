@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
-import { SidebarContext } from '../context/SidebarContext';
+import { useContext, useEffect, useState } from "react";
+import { SidebarContext } from "../context/SidebarContext";
 
 const useToggleDrawer = () => {
-  const [serviceId, setServiceId] = useState('');
-  const [title, setTitle] = useState('');
+  const [serviceId, setServiceId] = useState("");
+  const [title, setTitle] = useState("");
   const { toggleDrawer, isDrawerOpen, toggleModal } =
     useContext(SidebarContext);
 

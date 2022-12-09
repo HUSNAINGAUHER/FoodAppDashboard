@@ -53,11 +53,18 @@ const OrderInvoice = () => {
               </h1>
               <div className="lg:text-right text-left">
                 <h2 className="lg:flex lg:justify-end text-lg font-serif font-semibold mt-4 lg:mt-0 lg:ml-0 md:mt-0">
-                  {mode === "dark" ? (
-                    <img src={logoLight} alt="dashtar" width="110" />
-                  ) : (
-                    <img src={logoDark} alt="dashtar" width="110" />
-                  )}
+                  <a
+                    className=" text-gray-900 dark:text-gray-200"
+                    href="/dashboard"
+                  >
+                    <div className="text-2xl font-bold cursor-pointer ml-4">
+                      Heavens
+                      <span className="" style={{ color: "#07A32A" }}>
+                        Table
+                      </span>
+                      .
+                    </div>
+                  </a>
                 </h2>
                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
                   Cecilia Chapman, 561-4535 Nulla LA, <br /> United States 96522{" "}
@@ -92,7 +99,6 @@ const OrderInvoice = () => {
                   <br />
                   {data.address.substring(0, 25)}
                   <br />
-                  {data.city}, {data.country}, {data.zipCode}
                 </span>
               </div>
             </div>

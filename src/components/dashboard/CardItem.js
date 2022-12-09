@@ -1,7 +1,14 @@
-import React from 'react';
-import { Card, CardBody } from '@windmill/react-ui';
+import React from "react";
+import { Card, CardBody } from "@windmill/react-ui";
 
-const CardItem = ({ title, Icon, quantity, amount, className }) => {
+const CardItem = ({
+  title,
+  Icon,
+  quantity,
+  amount,
+  className,
+  size = "2xl",
+}) => {
   return (
     <>
       <Card className="flex h-full">
@@ -13,14 +20,16 @@ const CardItem = ({ title, Icon, quantity, amount, className }) => {
           </div>
           <div>
             <p className="mb-1 text-sm font-medium text-gray-600 dark:text-gray-400">
-              <span>{title}</span>{' '}
+              <span>{title}</span>{" "}
               {amount && (
                 <span className="text-red-400 text-sm font-semibold">
                   ({parseFloat(amount).toFixed(2)})
                 </span>
               )}
             </p>
-            <p className="text-2xl font-bold leading-none text-gray-600 dark:text-gray-200">
+            <p
+              className={`text-${size} font-bold leading-none text-gray-600 dark:text-gray-200`}
+            >
               {quantity}
             </p>
           </div>

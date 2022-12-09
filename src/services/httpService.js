@@ -1,12 +1,12 @@
-import axios from 'axios';
-import Cookies from 'js-cookie';
+import axios from "axios";
+import Cookies from "js-cookie";
 
 const instance = axios.create({
   baseURL: "https://foodappbackend.herokuapp.com/api",
   timeout: 500000,
   headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
+    Accept: "application/json",
+    "Content-Type": "application/json",
   },
 });
 
@@ -14,8 +14,8 @@ const instance = axios.create({
 instance.interceptors.request.use(function (config) {
   // Do something before request is sent
   let adminInfo;
-  if (Cookies.get('adminInfo')) {
-    adminInfo = JSON.parse(Cookies.get('adminInfo'));
+  if (Cookies.get("adminInfo")) {
+    adminInfo = JSON.parse(Cookies.get("adminInfo"));
   }
 
   return {

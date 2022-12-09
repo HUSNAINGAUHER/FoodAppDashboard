@@ -1,16 +1,18 @@
-import React, { useContext } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Modal, ModalBody, ModalFooter, Button } from '@windmill/react-ui';
-import { FiTrash2 } from 'react-icons/fi';
+import React, { useContext } from "react";
+import { useLocation } from "react-router-dom";
+import { Modal, ModalBody, ModalFooter, Button } from "@windmill/react-ui";
+import { FiTrash2 } from "react-icons/fi";
 
-import UserServices from '../../services/UserServices';
-import AdminServices from '../../services/AdminServices';
-import CouponServices from '../../services/CouponServices';
-import ProductServices from '../../services/ProductServices';
-import CategoryServices from '../../services/CategoryServices';
-import { SidebarContext } from '../../context/SidebarContext';
-import { notifySuccess, notifyError } from '../../utils/toast';
-import useToggleDrawer from '../../hooks/useToggleDrawer';
+import UserServices from "../../services/UserServices";
+import AdminServices from "../../services/AdminServices";
+import CouponServices from "../../services/CouponServices";
+import ProductServices from "../../services/ProductServices";
+import CategoryServices from "../../services/CategoryServices";
+import { SidebarContext } from "../../context/SidebarContext";
+import { notifySuccess, notifyError } from "../../utils/toast";
+import useToggleDrawer from "../../hooks/useToggleDrawer";
+import Distribution from "../../pages/Distributions";
+import DistributionService from "../../services/DistributionService";
 
 const MainModal = ({ id, title }) => {
   const { isModalOpen, closeModal, setIsUpdate } = useContext(SidebarContext);
@@ -18,7 +20,7 @@ const MainModal = ({ id, title }) => {
   const location = useLocation();
 
   const handleDelete = () => {
-    if (location.pathname === '/products') {
+    if (location.pathname === "/products") {
       ProductServices.deleteProduct(id)
         .then((res) => {
           setIsUpdate(true);
@@ -29,7 +31,7 @@ const MainModal = ({ id, title }) => {
       setServiceId();
     }
 
-    if (location.pathname === '/category') {
+    if (location.pathname === "/category") {
       CategoryServices.deleteCategory(id)
         .then((res) => {
           setIsUpdate(true);
@@ -39,7 +41,7 @@ const MainModal = ({ id, title }) => {
       closeModal();
       setServiceId();
     }
-    if (location.pathname === '/customers') {
+    if (location.pathname === "/customers") {
       UserServices.deleteUser(id)
         .then((res) => {
           setIsUpdate(true);
@@ -50,7 +52,7 @@ const MainModal = ({ id, title }) => {
       setServiceId();
     }
 
-    if (location.pathname === '/coupons') {
+    if (location.pathname === "/coupons") {
       CouponServices.deleteCoupon(id)
         .then((res) => {
           setIsUpdate(true);
@@ -60,8 +62,20 @@ const MainModal = ({ id, title }) => {
       closeModal();
       setServiceId();
     }
-    if (location.pathname === '/our-staff') {
+    if (location.pathname === "/our-staff") {
       AdminServices.deleteStaff(id)
+        .then((res) => {
+          setIsUpdate(true);
+          notifySuccess(res.message);
+        })
+        .catch((err) => notifyError(err.message));
+      closeModal();
+      setServiceId();
+    }
+
+    if (location.pathname === "/distributions") {
+      console.log("hee");
+      DistributionService.deleteProductById(id)
         .then((res) => {
           setIsUpdate(true);
           notifySuccess(res.message);
@@ -80,7 +94,7 @@ const MainModal = ({ id, title }) => {
             <FiTrash2 />
           </span>
           <h2 className="text-xl font-medium mb-1">
-            Are You Sure! Want to Delete{' '}
+            Are You Sure! Want to Delete{" "}
             <span className="text-red-500">{title}</span> Record?
           </h2>
           <p>
