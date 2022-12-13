@@ -41,5 +41,5 @@ const requests = {
 
   delete: (url) => instance.delete(url).then(responseBody),
 };
-
+const a = 0;
 export default requests;
