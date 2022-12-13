@@ -32,7 +32,7 @@ const OrderInvoice = () => {
 
   return (
     <>
-      <PageTitle>Invoice</PageTitle>
+      <PageTitle>Order</PageTitle>
 
       <div
         ref={printRef}
@@ -42,7 +42,7 @@ const OrderInvoice = () => {
           <div className="">
             <div className="flex lg:flex-row md:flex-row flex-col lg:items-center justify-between pb-4 border-b border-gray-50 dark:border-gray-700 dark:text-gray-300">
               <h1 className="font-bold font-serif text-xl uppercase">
-                Invoice
+                Order
                 <p className="text-xs mt-1 text-gray-500">
                   Status:{" "}
                   <span className="pl-2 font-medium text-xs capitalize">
@@ -84,7 +84,7 @@ const OrderInvoice = () => {
               </div>
               <div className="mb-3 md:mb-0 lg:mb-0 flex flex-col">
                 <span className="font-bold font-serif text-sm uppercase text-gray-600 dark:text-gray-500 block">
-                  Invoice No
+                  Order No
                 </span>
                 <span className="text-sm text-gray-500 dark:text-gray-400 block">
                   #10012
@@ -92,7 +92,7 @@ const OrderInvoice = () => {
               </div>
               <div className="flex flex-col lg:text-right text-left">
                 <span className="font-bold font-serif text-sm uppercase text-gray-600 dark:text-gray-500 block">
-                  Invoice To.
+                  Order To.
                 </span>
                 <span className="text-sm text-gray-500 dark:text-gray-400 block">
                   {data.name}
@@ -114,7 +114,7 @@ const OrderInvoice = () => {
                   <tr>
                     <TableCell> Sr.</TableCell>
                     <TableCell>Product Name</TableCell>
-                    <TableCell className="text-center">Quantity</TableCell>
+
                     <TableCell className="text-center">
                       Delivery/Picklup
                     </TableCell>
@@ -131,7 +131,7 @@ const OrderInvoice = () => {
           <ReactToPrint
             trigger={() => (
               <button className="flex items-center text-sm leading-5 transition-colors duration-150 font-medium focus:outline-none px-5 py-2 rounded-md text-white bg-green-500 border border-transparent active:bg-green-600 hover:bg-green-600 focus:ring focus:ring-purple-300 w-auto">
-                Print Invoice{" "}
+                Print Order{" "}
                 <span className="ml-2">
                   <FiPrinter />
                 </span>

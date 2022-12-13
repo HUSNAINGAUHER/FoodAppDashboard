@@ -21,12 +21,15 @@ const CustomerTable = ({ customers, customerId, setCustomerId }) => {
     setTitle(title);
   };
 
+  console.log(customers);
+
   return (
     <>
       <MainModal id={customerId} title={title} />
       <MainDrawer>
         <ProductDrawer id={customerId} />
       </MainDrawer>
+
       <TableBody>
         {customers?.map((user) => (
           <TableRow key={user._id}>

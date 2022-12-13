@@ -42,7 +42,7 @@ const CategoryDrawer = ({ id }) => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="p-6 flex-grow scrollbar-hide w-full max-h-full pb-40">
             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
-              <LabelArea label="Profile Picture" />
+              <LabelArea label="Category Icon" />
               <div className="col-span-8 sm:col-span-4">
                 <Uploader imageUrl={imageUrl} setImageUrl={setImageUrl} />
               </div>

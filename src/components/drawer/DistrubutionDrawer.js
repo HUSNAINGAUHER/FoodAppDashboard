@@ -53,7 +53,7 @@ const ProductDrawer = ({ id }) => {
                   register={register}
                   label="Start Date"
                   name="start"
-                  type="text"
+                  type="date"
                   placeholder="DD-MM-YYYY"
                 />
                 <Error errorName={errors.start} />
@@ -64,7 +64,7 @@ const ProductDrawer = ({ id }) => {
                   register={register}
                   label="End Date"
                   name="end"
-                  type="text"
+                  type="date"
                   placeholder="DD-MM-YYYY"
                 />
                 <Error errorName={errors.end} />
@@ -84,7 +84,7 @@ const ProductDrawer = ({ id }) => {
             </div>
           </div>
 
-          <DrawerButton id={id} title="Product" />
+          <DrawerButton id={id} title="Distribution" />
         </form>
       </Scrollbars>
     </>

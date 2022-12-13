@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 import {
   Table,
   TableHeader,
@@ -11,20 +11,20 @@ import {
   Card,
   CardBody,
   Pagination,
-} from '@windmill/react-ui';
-import { FiPlus } from 'react-icons/fi';
+} from "@windmill/react-ui";
+import { FiPlus } from "react-icons/fi";
 
-import useAsync from '../hooks/useAsync';
-import useFilter from '../hooks/useFilter';
-import NotFound from '../components/table/NotFound';
-import Loading from '../components/preloader/Loading';
-import StaffTable from '../components/staff/StaffTable';
-import AdminServices from '../services/AdminServices';
-import { AdminContext } from '../context/AdminContext';
-import { SidebarContext } from '../context/SidebarContext';
-import PageTitle from '../components/Typography/PageTitle';
-import MainDrawer from '../components/drawer/MainDrawer';
-import StaffDrawer from '../components/drawer/StaffDrawer';
+import useAsync from "../hooks/useAsync";
+import useFilter from "../hooks/useFilter";
+import NotFound from "../components/table/NotFound";
+import Loading from "../components/preloader/Loading";
+import StaffTable from "../components/staff/StaffTable";
+import AdminServices from "../services/AdminServices";
+import { AdminContext } from "../context/AdminContext";
+import { SidebarContext } from "../context/SidebarContext";
+import PageTitle from "../components/Typography/PageTitle";
+import MainDrawer from "../components/drawer/MainDrawer";
+import StaffDrawer from "../components/drawer/StaffDrawer";
 
 const Staff = () => {
   const { state } = useContext(AdminContext);
@@ -81,12 +81,7 @@ const Staff = () => {
                   Staff Role
                 </option>
                 <option value="Admin">Admin</option>
-                <option value="CEO">CEO</option>
-                <option value="Manager">Manager</option>
-                <option value="Accountant">Accountant</option>
-                <option value="Driver"> Driver </option>
-                <option value="Security Guard">Security Guard</option>
-                <option value="Deliver Person">Delivery Person</option>
+                <option value="Packing">Packing Department</option>
               </Select>
             </div>
 

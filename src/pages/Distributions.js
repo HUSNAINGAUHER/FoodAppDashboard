@@ -114,35 +114,48 @@ const Distribution = () => {
 
       {loading ? (
         <Loading loading={loading} />
-      ) : serviceData.length !== 0 ? (
-        <TableContainer className="mb-8">
-          <Table>
-            <TableHeader>
-              <tr>
-                <TableCell>ID</TableCell>
-                <TableCell>Start Date</TableCell>
-                <TableCell>End Date</TableCell>
-                <TableCell>Limit</TableCell>
-                <TableCell className="text-right">Actions</TableCell>
-              </tr>
-            </TableHeader>
-            <CustomerTable
-              customers={dataTable}
-              customerId={id}
-              setCustomerId={setID}
-            />
-          </Table>
-          <TableFooter>
-            <Pagination
-              totalResults={totalResults}
-              resultsPerPage={resultsPerPage}
-              onChange={handleChangePage}
-              label="Table navigation"
-            />
-          </TableFooter>
-        </TableContainer>
       ) : (
-        <NotFound title="Customer" />
+        <div className="flex justify-center">
+          <div
+            className={`${serviceData.length && "block"} ${
+              !serviceData.length && "hidden"
+            } w-full`}
+          >
+            <TableContainer className="mb-8">
+              <Table>
+                <TableHeader>
+                  <tr>
+                    <TableCell>ID</TableCell>
+                    <TableCell>Start Date</TableCell>
+                    <TableCell>End Date</TableCell>
+                    <TableCell>Limit</TableCell>
+                    <TableCell className="text-right">Actions</TableCell>
+                  </tr>
+                </TableHeader>
+                <CustomerTable
+                  customers={dataTable}
+                  customerId={id}
+                  setCustomerId={setID}
+                />
+              </Table>
+              <TableFooter>
+                <Pagination
+                  totalResults={totalResults}
+                  resultsPerPage={resultsPerPage}
+                  onChange={handleChangePage}
+                  label="Table navigation"
+                />
+              </TableFooter>
+            </TableContainer>
+          </div>
+          <div
+            className={`${!serviceData.length && "block"} ${
+              serviceData.length && "hidden"
+            } `}
+          >
+            <NotFound title="Customer" />
+          </div>
+        </div>
       )}
     </>
   );

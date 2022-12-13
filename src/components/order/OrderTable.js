@@ -9,6 +9,7 @@ import Tooltip from "../tooltip/Tooltip";
 import SelectStatus from "../form/SelectStatus";
 
 const OrderTable = ({ orders }) => {
+  console.log(orders);
   return (
     <>
       <TableBody>

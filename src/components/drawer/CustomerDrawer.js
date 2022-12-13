@@ -47,7 +47,7 @@ const ProductDrawer = ({ id }) => {
         <form onSubmit={handleSubmit(onSubmit)} className="block">
           <div className="px-6 pt-8 flex-grow w-full h-full max-h-full pb-40 md:pb-32 lg:pb-32 xl:pb-32">
             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
-              <LabelArea label="Category Icon" />
+              <LabelArea label="Profile Picture" />
               <div className="col-span-8 sm:col-span-4">
                 <Uploader imageUrl={imageUrl} setImageUrl={setImageUrl} />
               </div>
