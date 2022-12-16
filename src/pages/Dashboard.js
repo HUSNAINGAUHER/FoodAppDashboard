@@ -75,9 +75,6 @@ const Dashboard = () => {
           title="Order Pending"
           Icon={FiRefreshCw}
           quantity={data?.totalPendingOrder?.count}
-          amount={
-            data?.totalPendingOrder?.total && data?.totalPendingOrder?.total
-          }
           className="text-blue-600 dark:text-blue-100 bg-blue-100 dark:bg-blue-500"
         />
         <CardItem
