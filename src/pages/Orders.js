@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CSVDownloader } from "react-papaparse";
 import {
   Table,
@@ -23,6 +23,9 @@ import Loading from "../components/preloader/Loading";
 import OrderTable from "../components/order/OrderTable";
 import PageTitle from "../components/Typography/PageTitle";
 import { SidebarContext } from "../context/SidebarContext";
+import MainDrawer from "../components/drawer/MainDrawer";
+import DistrubutionDrawer from "../components/drawer/OrderDrawer";
+import MainModal from "../components/modal/MainModal";
 
 const Orders = () => {
   const {
@@ -36,8 +39,11 @@ const Orders = () => {
     handleChangePage,
     handleSubmitForAll,
     resultsPerPage,
+    toggleDrawer,
+    toggleModal,
   } = useContext(SidebarContext);
 
+  console.log(toggleModal);
   const { data, loading } = useAsync(() =>
     OrderServices.getAllOrders({
       contact: searchText,
@@ -47,11 +53,16 @@ const Orders = () => {
       day: time,
     })
   );
-
+  const [customerId, setCustomerId] = useState(undefined);
   const { dataTable, serviceData } = useFilter(data.orders);
 
   return (
     <>
+      <MainModal id={customerId} title={"Order"} />
+      <MainDrawer>
+        <DistrubutionDrawer id={customerId} />
+      </MainDrawer>
+
       <PageTitle>Orders</PageTitle>
       <Card className="min-w-0 shadow-xs overflow-hidden bg-white dark:bg-gray-800 mb-5">
         <CardBody>
@@ -126,10 +137,16 @@ const Orders = () => {
                 <TableCell>Delivery/Pickup</TableCell>
                 <TableCell className="text-center">Status</TableCell>
                 <TableCell className="text-center">Action</TableCell>
-                <TableCell className="text-right">Invoice</TableCell>
+                <TableCell className="text-center">Invoice</TableCell>
               </tr>
             </TableHeader>
-            <OrderTable orders={dataTable} />
+            <OrderTable
+              orders={dataTable}
+              customerId={customerId}
+              setCustomerId={setCustomerId}
+              toggleDrawer={toggleDrawer}
+              toggleModal={toggleModal}
+            />
           </Table>
           <TableFooter>
             <Pagination

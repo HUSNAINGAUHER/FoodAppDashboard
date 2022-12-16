@@ -1,19 +1,21 @@
-import React from 'react';
-import { Scrollbars } from 'react-custom-scrollbars-2';
-import { Textarea, Select } from '@windmill/react-ui';
-import ReactTagInput from '@pathofdev/react-tag-input';
+import React from "react";
+import { Scrollbars } from "react-custom-scrollbars-2";
+import { Textarea, Select } from "@windmill/react-ui";
+import ReactTagInput from "@pathofdev/react-tag-input";
 
-import Title from '../form/Title';
-import Error from '../form/Error';
-import LabelArea from '../form/LabelArea';
-import InputArea from '../form/InputArea';
-import InputValue from '../form/InputValue';
-import SelectOption from '../form/SelectOption';
-import DrawerButton from '../form/DrawerButton';
-import Uploader from '../image-uploader/Uploader';
-import ChildrenCategory from '../category/ChildrenCategory';
-import ParentCategory from '../category/ParentCategory';
-import useProductSubmit from '../../hooks/useProductSubmit';
+import Title from "../form/Title";
+import Error from "../form/Error";
+import LabelArea from "../form/LabelArea";
+import InputArea from "../form/InputArea";
+import InputValue from "../form/InputValue";
+import SelectOption from "../form/SelectOption";
+import DrawerButton from "../form/DrawerButton";
+import Uploader from "../image-uploader/Uploader";
+import ChildrenCategory from "../category/ChildrenCategory";
+import ParentCategory from "../category/ParentCategory";
+import useProductSubmit from "../../hooks/useProductSubmit";
+import useAsync from "../../hooks/useAsync";
+import DistributionService from "../../services/DepartmentService";
 
 const ProductDrawer = ({ id }) => {
   const {
@@ -27,6 +29,12 @@ const ProductDrawer = ({ id }) => {
     tag,
     setTag,
   } = useProductSubmit(id);
+
+  const { data: departments } = useAsync(
+    DistributionService.getAllDistribution
+  );
+
+  console.log(departments);
 
   return (
     <>
@@ -53,8 +61,6 @@ const ProductDrawer = ({ id }) => {
               </div>
             </div>
 
-            
-
             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
               <LabelArea label="Product Title/Name" />
               <div className="col-span-8 sm:col-span-4">
@@ -69,18 +75,16 @@ const ProductDrawer = ({ id }) => {
               </div>
             </div>
 
-          
-
             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
               <LabelArea label="Product Description" />
               <div className="col-span-8 sm:col-span-4">
                 <Textarea
                   className="border text-sm focus:outline-none block w-full bg-gray-100 border-transparent focus:bg-white"
-                  {...register('description', {
-                    required: 'Description is required!',
+                  {...register("description", {
+                    required: "Description is required!",
                     minLength: {
                       value: 20,
-                      message: 'Minimum 20 character!',
+                      message: "Minimum 20 character!",
                     },
                   })}
                   name="description"
@@ -98,8 +102,8 @@ const ProductDrawer = ({ id }) => {
                 <Select
                   className="border h-12 text-sm focus:outline-none block w-full bg-gray-100 dark:bg-white border-transparent focus:bg-white"
                   name="parent"
-                  {...register('parent', {
-                    required: 'Product category is required!',
+                  {...register("parent", {
+                    required: "Product category is required!",
                   })}
                 >
                   <option value="" defaultValue hidden>
@@ -111,26 +115,23 @@ const ProductDrawer = ({ id }) => {
               </div>
             </div>
 
-           
-
-           
-
-            {/* <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
-              <LabelArea label="Flash Sale" />
+            <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+              <LabelArea label="Department" />
               <div className="col-span-8 sm:col-span-4">
                 <Select
                   className="border h-12 text-sm focus:outline-none block w-full bg-gray-100 dark:bg-white border-transparent focus:bg-white"
-                  name="flashSale"
-                  {...register('flashSale', {
-                    required: 'Flash Sale is required!',
+                  name="department"
+                  {...register("department", {
+                    required: "department is required!",
                   })}
                 >
-                  <option value="No">No</option>
-                  <option value="Yes">Yes</option>
+                  {departments?.map((d) => (
+                    <option value={d.name}>{d.name}</option>
+                  ))}
                 </Select>
-                <Error errorName={errors.flashSale} />
+                <Error errorName={errors.department} />
               </div>
-            </div> */}
+            </div>
 
             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
               <LabelArea label="Unit (kg/pc/lb/ml/g...etc)" />
@@ -161,8 +162,6 @@ const ProductDrawer = ({ id }) => {
                 <Error errorName={errors.quantity} />
               </div>
             </div>
-
-            
 
             {/* <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
               <LabelArea label="Tax1" />

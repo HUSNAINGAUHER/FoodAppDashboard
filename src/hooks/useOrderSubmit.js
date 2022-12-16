@@ -3,14 +3,15 @@ import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { SidebarContext } from "../context/SidebarContext";
 import DistributionService from "../services/DistributionService";
+import OrderServices from "../services/OrderServices";
 import ProductServices from "../services/ProductServices";
 import { notifyError, notifySuccess } from "../utils/toast";
 
 const useProductSubmit = (id) => {
   const [imageUrl, setImageUrl] = useState("");
-  const [start, setStart] = useState("");
+  const [cart, setCart] = useState("");
 
-  const [end, setEnd] = useState("");
+  const [shippingOption, setShippingOption] = useState("");
 
   const [children, setChildren] = useState("");
   const [tag, setTag] = useState([]);
@@ -27,13 +28,14 @@ const useProductSubmit = (id) => {
 
   const onSubmit = (data) => {
     const productData = {
-      start: data.start,
-      end: data.end,
-      limit: data.limit,
+      address: data.address,
+      phone: data.phone,
+      shippingOption: shippingOption,
+      cart: cart,
     };
 
     if (id) {
-      DistributionService.updateDistribution(id, productData)
+      OrderServices.updateOrder(id, productData)
         .then((res) => {
           setIsUpdate(true);
           notifySuccess(res.message);
@@ -53,20 +55,21 @@ const useProductSubmit = (id) => {
 
   useEffect(() => {
     if (!isDrawerOpen) {
-      setValue("start");
-      setValue("end");
-      setValue("limit");
+      setValue("contact");
+      setValue("address");
+      setValue("shippingOption");
       return;
     }
 
     if (id) {
-      DistributionService.getProductById(id)
+      OrderServices.getOrderById(id)
         .then((res) => {
           if (res) {
-            setValue("limit", res.limit);
-
-            setValue("start", dayjs(res.start).format("YYYY-MM-DD"));
-            setValue("end", dayjs(res.end).format("YYYY-MM-DD"));
+            console.log(res);
+            setValue("contact", res.contact);
+            setValue("address", res.address);
+            setShippingOption(res.shippingOption);
+            setCart(res.cart);
           }
         })
         .catch((err) => {
@@ -91,8 +94,10 @@ const useProductSubmit = (id) => {
     setImageUrl,
     tag,
     setTag,
-    start,
-    end,
+    shippingOption,
+    setShippingOption,
+    cart,
+    setCart,
   };
 };
 

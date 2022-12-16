@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   Table,
@@ -20,6 +20,7 @@ import CustomerOrderTable from "../components/customer/CustomerOrderTable";
 const CustomerOrder = () => {
   const { id } = useParams();
 
+  const [customerId, setCustomerId] = useState(undefined);
   const { data, loading, error } = useAsync(() =>
     OrderServices.getOrderByUser(id)
   );
@@ -58,7 +59,11 @@ const CustomerOrder = () => {
                 <TableCell className="text-center">Actions</TableCell>
               </tr>
             </TableHeader>
-            <CustomerOrderTable orders={dataTable} />
+            <CustomerOrderTable
+              orders={dataTable}
+              customerId={customerId}
+              setCustomerId={setCustomerId}
+            />
           </Table>
           <TableFooter>
             <Pagination

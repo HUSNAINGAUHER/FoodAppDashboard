@@ -13,7 +13,7 @@ import DrawerButton from "../form/DrawerButton";
 import Uploader from "../image-uploader/Uploader";
 import ChildrenCategory from "../category/ChildrenCategory";
 import ParentCategory from "../category/ParentCategory";
-import useDistributionSubmit from "../../hooks/useDistributionSubmit";
+import useDistributionSubmit from "../../hooks/useDeparmentSubmit";
 
 const ProductDrawer = ({ id }) => {
   const {
@@ -35,13 +35,13 @@ const ProductDrawer = ({ id }) => {
       <div className="w-full relative p-6 border-b border-gray-100 bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300">
         {id ? (
           <Title
-            title="Update Distribution"
-            description="Updated your Distribution and necessary information from here"
+            title="Update Department"
+            description="Updated your Department and necessary information from here"
           />
         ) : (
           <Title
-            title="Add Distribution"
-            description="Add your Distribution and necessary information from here"
+            title="Add Department"
+            description="Add your Department and necessary information from here"
           />
         )}
       </div>
@@ -49,45 +49,20 @@ const ProductDrawer = ({ id }) => {
         <form onSubmit={handleSubmit(onSubmit)} className="block">
           <div className="px-6 pt-8 flex-grow w-full h-full max-h-full pb-40 md:pb-32 lg:pb-32 xl:pb-32">
             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
-              <LabelArea label="Start Date" />
+              <LabelArea label="Name" />
               <div className="col-span-8 sm:col-span-4">
                 <InputArea
                   register={register}
-                  label="Start Date"
-                  name="start"
-                  type="date"
-                  defaultValue={start}
+                  label="Name"
+                  name="name"
+                  type="text"
                 />
-                <Error errorName={errors.start} />
-              </div>
-              <LabelArea label="End Date" />
-              <div className="col-span-8 sm:col-span-4">
-                <InputArea
-                  register={register}
-                  label="End Date"
-                  name="end"
-                  type="date"
-                  defaultValue={end}
-                  value={end}
-                />
-                <Error errorName={errors.end} />
-              </div>
-
-              <LabelArea label="Cart Limit" />
-              <div className="col-span-8 sm:col-span-4">
-                <InputValue
-                  register={register}
-                  label="Limit"
-                  name="limit"
-                  type="number"
-                  placeholder="Cart Limit"
-                />
-                <Error errorName={errors.limit} />
+                <Error errorName={errors.name} />
               </div>
             </div>
           </div>
 
-          <DrawerButton id={id} title="Distribution" />
+          <DrawerButton id={id} title="Department" />
         </form>
       </Scrollbars>
     </>

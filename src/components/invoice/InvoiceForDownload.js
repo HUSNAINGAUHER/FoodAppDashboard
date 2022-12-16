@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   tableCol: {
-    width: "15%",
+    width: "150px",
     borderStyle: "solid",
     borderWidth: 1,
     borderLeftWidth: 0.5,
@@ -129,104 +129,109 @@ const InvoiceForDownload = ({ data }) => {
   return (
     <>
       <Document>
-        <Page size="A4" style={styles.page}>
-          <View style={styles.invoiceFirst}>
-            <View>
-              <Text style={{ fontFamily: "Open Sans", fontWeight: "bold" }}>
-                INVOICE
-              </Text>
-              <Text style={styles.info}>
-                Status :{" "}
-                {data.status === "Pending" && (
-                  <span style={{ color: "#eab308" }}>{data.status}</span>
-                )}
-                {data.status === "Processing" && (
-                  <span style={{ color: "#14b8a6" }}>{data.status}</span>
-                )}
-                {data.status === "Delivered" && (
-                  <span style={{ color: "#22c55e" }}>{data.status}</span>
-                )}
-                {data.status === "Cancel" && (
-                  <span style={{ color: "#f43f5e" }}>{data.status}</span>
-                )}
-              </Text>
-            </View>
-            <View>
-              <Image style={styles.logo} src={logoLight} />
-              <Text style={styles.info}>
-                Cecilia Chapman, 561-4535 Nulla LA,
-              </Text>
-              <Text style={styles.info}> United States 96522</Text>
-            </View>
-          </View>
+        {Object.keys(data).map((key) => {
+          const res = data[key];
+          console.log(res);
+          const status = res.length > 0 ? res[0].status : "";
+          const createdAt = res.length > 0 ? res[0].createdAt : "";
 
-          <View style={styles.invoiceSecond}>
-            <View>
-              <Text style={styles.title}>DATE</Text>
-              <Text style={styles.info}>
-                {data.createdAt !== undefined && (
-                  <span>{dayjs(data?.createdAt).format("MMMM D, YYYY")}</span>
-                )}
-              </Text>
-            </View>
-            <View>
-              <Text style={styles.title}>INVOICE NO</Text>
-              <Text style={styles.info}>#10012</Text>
-            </View>
-            <View>
-              <Text style={styles.title}>INVOICE TO</Text>
-              <Text style={styles.info}>{data.name}</Text>
-              <Text style={styles.info}> {data.address.substring(0, 25)}</Text>
-            </View>
-          </View>
-          <View style={styles.table}>
-            <View style={styles.tableRow}>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>
-                  <span style={styles.header}>Sr.</span>
-                </Text>
-              </View>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>
-                  <span style={styles.header}>Product Name</span>
-                </Text>
-              </View>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>
-                  <span style={styles.header}>Quantity</span>
-                </Text>
-              </View>
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>
-                  <span style={styles.header}>Item Price</span>
-                </Text>
+          return res.length ? (
+            <Page size="A4" style={styles.page}>
+              <View style={styles.invoiceFirst}>
+                <View>
+                  <Text style={{ fontFamily: "Open Sans", fontWeight: "bold" }}>
+                    INVOICE
+                  </Text>
+                  <Text style={styles.info}>
+                    Status :
+                    {status === " Pending" && (
+                      <Text style={{ color: "#eab308" }}>{status}</Text>
+                    )}
+                    {status === " Processing" && (
+                      <Text style={{ color: "#14b8a6" }}>{status}</Text>
+                    )}
+                    {status === " Delivered" && (
+                      <Text style={{ color: "#22c55e" }}>{status}</Text>
+                    )}
+                    {status === " Cancel" && (
+                      <Text style={{ color: "#f43f5e" }}>{status}</Text>
+                    )}
+                  </Text>
+                </View>
+                <View>
+                  <Text className="text-2xl font-bold cursor-pointer ml-4">
+                    Heavens
+                    <Text className="" style={{ color: "#07A32A" }}>
+                      Table
+                    </Text>
+                    .
+                  </Text>
+                  <Text style={styles.info}>Deparment</Text>
+                  <Text style={styles.info}> {key}</Text>
+                </View>
               </View>
 
-              <View style={styles.tableCol}>
-                <Text style={styles.tableCell}>
-                  {" "}
-                  <span style={styles.header}>Amount</span>
-                </Text>
-              </View>
-            </View>
-            {data?.cart?.map((item, i) => (
-              <View key={i} style={styles.tableRow}>
-                <View style={styles.tableCol}>
-                  <Text style={styles.tableCell}>{i + 1} </Text>
+              <View style={styles.invoiceSecond}>
+                <View>
+                  <Text style={styles.title}>DATE</Text>
+                  <Text style={styles.info}>
+                    {createdAt !== undefined && (
+                      <Text>{dayjs(createdAt).format("MMMM D, YYYY")}</Text>
+                    )}
+                  </Text>
                 </View>
-                <View style={styles.tableCol}>
-                  <Text style={styles.tableCell}>{item.title} </Text>
+                <View>
+                  <Text style={styles.title}>INVOICE NO</Text>
+                  <Text style={styles.info}>{res[0].invoice}</Text>
                 </View>
-                <View style={styles.tableCol}>
-                  <Text style={styles.tableCell}>
+                <View>
+                  <Text style={styles.title}>INVOICE TO</Text>
+                  <Text style={styles.info}>{res[0].name}</Text>
+                  <Text style={styles.info}>
                     {" "}
-                    <span style={styles.quantity}>{item.quantity}</span>{" "}
+                    {res[0].address.substring(0, 25)}
                   </Text>
                 </View>
               </View>
-            ))}
-          </View>
-        </Page>
+              <View style={styles.table}>
+                <View style={styles.tableRow}>
+                  <View style={styles.tableCol}>
+                    <Text style={styles.tableCell}>
+                      <Text style={styles.header}>Sr.</Text>
+                    </Text>
+                  </View>
+                  <View style={styles.tableCol}>
+                    <Text style={styles.tableCell}>
+                      <Text style={styles.header}>Product Name</Text>
+                    </Text>
+                  </View>
+                  <View style={styles.tableCol}>
+                    <Text style={styles.tableCell}>
+                      <Text style={styles.header}>Shipping Option</Text>
+                    </Text>
+                  </View>
+                </View>
+                {res?.map((item, i) => (
+                  <View key={i} style={styles.tableRow}>
+                    <View style={styles.tableCol}>
+                      <Text style={styles.tableCell}>{i + 1} </Text>
+                    </View>
+                    <View style={styles.tableCol}>
+                      <Text style={styles.tableCell}>{item.title} </Text>
+                    </View>
+                    <View style={styles.tableCol}>
+                      <Text style={styles.tableCell}>
+                        {item.shippingOption}
+                      </Text>
+                    </View>
+                  </View>
+                ))}
+              </View>
+            </Page>
+          ) : (
+            <></>
+          );
+        })}
       </Document>
     </>
   );

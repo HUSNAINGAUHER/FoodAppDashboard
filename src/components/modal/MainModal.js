@@ -13,6 +13,9 @@ import { notifySuccess, notifyError } from "../../utils/toast";
 import useToggleDrawer from "../../hooks/useToggleDrawer";
 import Distribution from "../../pages/Distributions";
 import DistributionService from "../../services/DistributionService";
+import Dept from "../../services/DepartmentService";
+
+import OrderServices from "../../services/OrderServices";
 
 const MainModal = ({ id, title }) => {
   const { isModalOpen, closeModal, setIsUpdate } = useContext(SidebarContext);
@@ -74,8 +77,30 @@ const MainModal = ({ id, title }) => {
     }
 
     if (location.pathname === "/distributions") {
-      console.log("hee");
       DistributionService.deleteProductById(id)
+        .then((res) => {
+          setIsUpdate(true);
+          notifySuccess(res.message);
+        })
+        .catch((err) => notifyError(err.message));
+      closeModal();
+      setServiceId();
+    }
+
+    if (location.pathname === "/orders") {
+      OrderServices.deleteOrder(id)
+        .then((res) => {
+          setIsUpdate(true);
+          notifySuccess(res.message);
+        })
+        .catch((err) => notifyError(err.message));
+      closeModal();
+      setServiceId();
+    }
+
+    if (location.pathname === "/departments") {
+      console.log("sdkjsdsjhlk");
+      Dept.deleteProductById(id)
         .then((res) => {
           setIsUpdate(true);
           notifySuccess(res.message);

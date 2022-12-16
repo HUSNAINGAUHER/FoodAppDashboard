@@ -1,21 +1,21 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 import {
   TableCell,
   TableBody,
   TableRow,
   Badge,
   Avatar,
-} from '@windmill/react-ui';
-import { FiZoomIn } from 'react-icons/fi';
+} from "@windmill/react-ui";
+import { FiZoomIn } from "react-icons/fi";
 
-import Tooltip from '../tooltip/Tooltip';
-import MainModal from '../modal/MainModal';
-import MainDrawer from '../drawer/MainDrawer';
-import ProductDrawer from '../drawer/ProductDrawer';
-import ShowHideButton from '../table/ShowHideButton';
-import EditDeleteButton from '../table/EditDeleteButton';
-import useToggleDrawer from '../../hooks/useToggleDrawer';
+import Tooltip from "../tooltip/Tooltip";
+import MainModal from "../modal/MainModal";
+import MainDrawer from "../drawer/MainDrawer";
+import ProductDrawer from "../drawer/ProductDrawer";
+import ShowHideButton from "../table/ShowHideButton";
+import EditDeleteButton from "../table/EditDeleteButton";
+import useToggleDrawer from "../../hooks/useToggleDrawer";
 
 const ProductTable = ({ products }) => {
   const { title, serviceId, handleModalOpen, handleUpdate } = useToggleDrawer();
@@ -29,7 +29,6 @@ const ProductTable = ({ products }) => {
       <TableBody>
         {products?.map((product, i) => (
           <TableRow key={i + 1}>
-            
             <TableCell>
               <div className="flex items-center">
                 <Avatar
@@ -46,20 +45,13 @@ const ProductTable = ({ products }) => {
               <span className="text-sm">{product.parent}</span>
             </TableCell>
 
-          
-
             <TableCell>
               <span className="text-sm">{product.quantity}</span>
             </TableCell>
             <TableCell>
-              {product.quantity > 0 ? (
-                <Badge type="success">Selling</Badge>
-              ) : (
-                <Badge type="danger">Sold Out</Badge>
-              )}
+              <Badge type="success">{product.department}</Badge>
             </TableCell>
 
-        
             <TableCell>
               <Link
                 to={`/product/${product._id}`}

@@ -8,6 +8,7 @@ import {
   FiList,
   FiSettings,
   FiSlack,
+  FiCommand,
 } from "react-icons/fi";
 /**
  * ⚠ These are used just to render the Sidebar!
@@ -41,6 +42,11 @@ const sidebar = [
     path: "/orders",
     icon: FiCompass,
     name: "Orders",
+  },
+  {
+    path: "/departments",
+    icon: FiCommand,
+    name: "Departments",
   },
   {
     path: "/distributions",

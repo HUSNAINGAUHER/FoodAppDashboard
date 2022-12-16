@@ -1,8 +1,8 @@
 import dayjs from "dayjs";
 import { useContext, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { SidebarContext } from "../context/SidebarContext";
-import DistributionService from "../services/DistributionService";
+import DistributionService from "../services/DepartmentService";
 import ProductServices from "../services/ProductServices";
 import { notifyError, notifySuccess } from "../utils/toast";
 
@@ -27,9 +27,7 @@ const useProductSubmit = (id) => {
 
   const onSubmit = (data) => {
     const productData = {
-      start: data.start,
-      end: data.end,
-      limit: data.limit,
+      name: data.name,
     };
 
     if (id) {
@@ -53,9 +51,7 @@ const useProductSubmit = (id) => {
 
   useEffect(() => {
     if (!isDrawerOpen) {
-      setValue("start");
-      setValue("end");
-      setValue("limit");
+      setValue("name");
       return;
     }
 
@@ -63,10 +59,7 @@ const useProductSubmit = (id) => {
       DistributionService.getProductById(id)
         .then((res) => {
           if (res) {
-            setValue("limit", res.limit);
-
-            setValue("start", dayjs(res.start).format("YYYY-MM-DD"));
-            setValue("end", dayjs(res.end).format("YYYY-MM-DD"));
+            setValue("name", res.name);
           }
         })
         .catch((err) => {

@@ -13,7 +13,10 @@ import DrawerButton from "../form/DrawerButton";
 import Uploader from "../image-uploader/Uploader";
 import ChildrenCategory from "../category/ChildrenCategory";
 import ParentCategory from "../category/ParentCategory";
-import useDistributionSubmit from "../../hooks/useDistributionSubmit";
+import useDistributionSubmit from "../../hooks/useOrderSubmit";
+import { SelectMathod } from "../form/SelectRole";
+import { Tooltip } from "chart.js";
+import { FiTrash } from "react-icons/fi";
 
 const ProductDrawer = ({ id }) => {
   const {
@@ -26,9 +29,13 @@ const ProductDrawer = ({ id }) => {
     setImageUrl,
     tag,
     setTag,
-    start,
-    end,
+    cart,
+    setCart,
+    shippingOption,
+    setShippingOption,
   } = useDistributionSubmit(id);
+
+  console.log(shippingOption);
 
   return (
     <>
@@ -40,7 +47,7 @@ const ProductDrawer = ({ id }) => {
           />
         ) : (
           <Title
-            title="Add Distribution"
+            title="Add Order"
             description="Add your Distribution and necessary information from here"
           />
         )}
@@ -49,45 +56,59 @@ const ProductDrawer = ({ id }) => {
         <form onSubmit={handleSubmit(onSubmit)} className="block">
           <div className="px-6 pt-8 flex-grow w-full h-full max-h-full pb-40 md:pb-32 lg:pb-32 xl:pb-32">
             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
-              <LabelArea label="Start Date" />
+              <LabelArea label="Contact" />
               <div className="col-span-8 sm:col-span-4">
                 <InputArea
                   register={register}
-                  label="Start Date"
-                  name="start"
-                  type="date"
-                  defaultValue={start}
+                  label="Contact"
+                  name="contact"
+                  type="text"
                 />
-                <Error errorName={errors.start} />
+                <Error errorName={errors.contact} />
               </div>
-              <LabelArea label="End Date" />
+              <LabelArea label="Shipping Adress" />
               <div className="col-span-8 sm:col-span-4">
                 <InputArea
                   register={register}
-                  label="End Date"
-                  name="end"
-                  type="date"
-                  defaultValue={end}
-                  value={end}
+                  label="Adress"
+                  name="address"
+                  type="text"
                 />
-                <Error errorName={errors.end} />
+                <Error errorName={errors.address} />
               </div>
-
-              <LabelArea label="Cart Limit" />
+              <LabelArea label="Shipping Option" />
               <div className="col-span-8 sm:col-span-4">
-                <InputValue
+                <SelectMathod
                   register={register}
-                  label="Limit"
-                  name="limit"
-                  type="number"
-                  placeholder="Cart Limit"
+                  label="Shipping Option"
+                  name="shippingOption"
+                  setRole={setShippingOption}
+                  value={shippingOption}
                 />
                 <Error errorName={errors.limit} />
               </div>
             </div>
+            <div className="w-full flex flex-col items-center justify-center">
+              {cart &&
+                cart?.map((c) => {
+                  return (
+                    <div className="grid grid-cols-2 items-center justify-start text-start gap-x-20">
+                      <div>{c.title}</div>
+                      <div
+                        className="p-2 cursor-pointer text-gray-400 hover:text-green-600"
+                        onClick={() => {
+                          setCart(cart.filter((c1) => c._id !== c1._id));
+                        }}
+                      >
+                        remove
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
           </div>
 
-          <DrawerButton id={id} title="Distribution" />
+          <DrawerButton id={id} title="Order" />
         </form>
       </Scrollbars>
     </>

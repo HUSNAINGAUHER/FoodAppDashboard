@@ -110,7 +110,7 @@ const Products = () => {
                 <TableCell>Product name</TableCell>
                 <TableCell>Category</TableCell>
                 <TableCell>Stock</TableCell>
-                <TableCell>Status</TableCell>
+                <TableCell>Department</TableCell>
                 <TableCell>Details</TableCell>
                 <TableCell className="text-center">Published</TableCell>
                 <TableCell className="text-right">Actions</TableCell>

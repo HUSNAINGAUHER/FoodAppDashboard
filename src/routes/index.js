@@ -1,5 +1,6 @@
 import { lazy } from "react";
 const Distribution = lazy(() => import("../pages/Distributions"));
+const Deparments = lazy(() => import("../pages/Departments"));
 
 // use lazy for better code splitting
 const Dashboard = lazy(() => import("../pages/Dashboard"));
@@ -82,6 +83,10 @@ const routes = [
   {
     path: "/edit-profile",
     component: EditProfile,
+  },
+  {
+    path: "/departments",
+    component: Deparments,
   },
 ];
 
