@@ -12,6 +12,8 @@ const useProductSubmit = (id) => {
   const [imageUrl, setImageUrl] = useState("");
   const [children, setChildren] = useState("");
   const [tag, setTag] = useState([]);
+  const [password, setPassword] = useState("");
+
   const { isDrawerOpen, closeDrawer, setIsUpdate } = useContext(SidebarContext);
 
   const {
@@ -31,11 +33,10 @@ const useProductSubmit = (id) => {
       phone: data.phone,
       image: imageUrl,
       zipCode: data.zip,
-      password: data.password,
+      password: data.password === password ? undefined : data.password,
     };
 
     if (id) {
-      productData.password = undefined;
       UserServices.updateCustomer(id, productData)
         .then((res) => {
           setIsUpdate(true);
@@ -74,6 +75,7 @@ const useProductSubmit = (id) => {
       UserServices.getUserById(id)
         .then((res) => {
           console.log(res);
+          setPassword(res.password);
           if (res) {
             setValue("name", res.name);
             setValue("email", res.email);
