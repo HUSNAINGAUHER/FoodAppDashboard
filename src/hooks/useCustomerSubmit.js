@@ -33,7 +33,7 @@ const useProductSubmit = (id) => {
       phone: data.phone,
       image: imageUrl,
       zipCode: data.zip,
-      password: data.password === password ? undefined : data.password,
+      password: data.password,
     };
 
     if (id) {
