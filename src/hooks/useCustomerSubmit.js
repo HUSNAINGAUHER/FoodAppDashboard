@@ -35,6 +35,7 @@ const useProductSubmit = (id) => {
     };
 
     if (id) {
+      productData.password = undefined;
       UserServices.updateCustomer(id, productData)
         .then((res) => {
           setIsUpdate(true);
