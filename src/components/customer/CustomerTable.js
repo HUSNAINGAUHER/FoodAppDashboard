@@ -76,7 +76,7 @@ const CustomerTable = ({ customers, customerId, setCustomerId }) => {
                     }}
                   >
                     <Tooltip
-                      id="view"
+                      id="edit"
                       Icon={FiEdit}
                       title="Edit Customer"
                       bgColor="#34D399"

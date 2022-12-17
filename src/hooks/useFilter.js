@@ -1,38 +1,38 @@
-import * as dayjs from 'dayjs';
-import isBetween from 'dayjs/plugin/isBetween';
-import isToday from 'dayjs/plugin/isToday';
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import * as dayjs from "dayjs";
+import isBetween from "dayjs/plugin/isBetween";
+import isToday from "dayjs/plugin/isToday";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 //internal import
-import ProductServices from '../services/ProductServices';
-import { notifyError, notifySuccess } from '../utils/toast';
+import ProductServices from "../services/ProductServices";
+import { notifyError, notifySuccess } from "../utils/toast";
 
 const useFilter = (data) => {
   const [filter, setFilter] = useState(null);
-  const [sortedField, setSortedField] = useState('');
-  const [searchText, setSearchText] = useState('');
-  const [searchUser, setSearchUser] = useState('');
-  const [searchCoupon, setSearchCoupon] = useState('');
-  const [searchOrder, setSearchOrder] = useState('');
-  const [categoryType, setCategoryType] = useState('');
+  const [sortedField, setSortedField] = useState("");
+  const [searchText, setSearchText] = useState("");
+  const [searchUser, setSearchUser] = useState("");
+  const [searchCoupon, setSearchCoupon] = useState("");
+  const [searchOrder, setSearchOrder] = useState("");
+  const [categoryType, setCategoryType] = useState("");
   const [pending, setPending] = useState([]);
   const [processing, setProcessing] = useState([]);
   const [delivered, setDelivered] = useState([]);
-  const [status, setStatus] = useState('');
-  const [role, setRole] = useState('');
-  const [time, setTime] = useState('');
+  const [status, setStatus] = useState("");
+  const [role, setRole] = useState("");
+  const [time, setTime] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [dataTable, setDataTable] = useState([]); //tableTable for showing on table according to filtering
-  const [todayOrder, setTodayOrder] = useState('');
-  const [monthlyOrder, setMonthlyOrder] = useState('');
-  const [totalOrder, setTotalOrder] = useState('');
+  const [todayOrder, setTodayOrder] = useState("");
+  const [monthlyOrder, setMonthlyOrder] = useState("");
+  const [totalOrder, setTotalOrder] = useState("");
   const [newProducts] = useState([]);
-  const searchRef = useRef('');
-  const userRef = useRef('');
-  const couponRef = useRef('');
-  const orderRef = useRef('');
-  const categoryRef = useRef('');
+  const searchRef = useRef("");
+  const userRef = useRef("");
+  const couponRef = useRef("");
+  const orderRef = useRef("");
+  const categoryRef = useRef("");
   dayjs.extend(isBetween);
   dayjs.extend(isToday);
   const location = useLocation();
@@ -43,17 +43,17 @@ const useFilter = (data) => {
     date.setDate(date.getDate() - time);
     let services = data;
 
-    if (location.pathname === '/dashboard') {
+    if (location.pathname === "/dashboard") {
       const orderPending = services?.filter(
-        (statusP) => statusP.status === 'Pending'
+        (statusP) => statusP.status === "Pending"
       );
       setPending(orderPending);
       const orderProcessing = services?.filter(
-        (statusO) => statusO.status === 'Processing'
+        (statusO) => statusO.status === "Processing"
       );
       setProcessing(orderProcessing);
       const orderDelivered = services?.filter(
-        (statusD) => statusD.status === 'Delivered'
+        (statusD) => statusD.status === "Delivered"
       );
       setDelivered(orderDelivered);
       //daily total order calculation
@@ -91,15 +91,17 @@ const useFilter = (data) => {
       services = services.filter((item) => item.parent === filter);
     }
 
-    if (sortedField === 'Low') {
+    if (sortedField === "Low") {
       services = services.sort((a, b) => a.price < b.price && -1);
     }
-    if (sortedField === 'High') {
+    if (sortedField === "High") {
       services = services.sort((a, b) => a.price > b.price && -1);
     }
     if (searchText) {
-      services = services.filter((search) =>
-        search.title.toLowerCase().includes(searchText.toLowerCase())
+      services = services.filter(
+        (search) =>
+          search.title.toLowerCase().includes(searchText.toLowerCase()) ||
+          search?.invoice.toLowerCase().includes(searchText.toLowerCase())
       );
     }
 
@@ -227,7 +229,7 @@ const useFilter = (data) => {
 
   const handleUploadProducts = () => {
     if (newProducts.length < 1) {
-      notifyError('Please upload/select csv file first!');
+      notifyError("Please upload/select csv file first!");
     } else {
       ProductServices.addAllProducts(newProducts)
         .then((res) => {

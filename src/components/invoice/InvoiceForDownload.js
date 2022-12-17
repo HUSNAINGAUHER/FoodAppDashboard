@@ -140,24 +140,12 @@ const InvoiceForDownload = ({ data }) => {
               <View style={styles.invoiceFirst}>
                 <View>
                   <Text style={{ fontFamily: "Open Sans", fontWeight: "bold" }}>
-                    INVOICE
+                    #{res[0].invoice}
                   </Text>
-                  <Text style={styles.info}>
-                    Status :
-                    {status === " Pending" && (
-                      <Text style={{ color: "#eab308" }}>{status}</Text>
-                    )}
-                    {status === " Processing" && (
-                      <Text style={{ color: "#14b8a6" }}>{status}</Text>
-                    )}
-                    {status === " Delivered" && (
-                      <Text style={{ color: "#22c55e" }}>{status}</Text>
-                    )}
-                    {status === " Cancel" && (
-                      <Text style={{ color: "#f43f5e" }}>{status}</Text>
-                    )}
-                  </Text>
+                  <Text style={styles.info}>Shipping Option</Text>
+                  <Text style={styles.info}>{res[0].shippingOption}</Text>
                 </View>
+
                 <View>
                   <Text className="text-2xl font-bold cursor-pointer ml-4">
                     Heavens
@@ -180,12 +168,9 @@ const InvoiceForDownload = ({ data }) => {
                     )}
                   </Text>
                 </View>
+
                 <View>
-                  <Text style={styles.title}>INVOICE NO</Text>
-                  <Text style={styles.info}>{res[0].invoice}</Text>
-                </View>
-                <View>
-                  <Text style={styles.title}>INVOICE TO</Text>
+                  <Text style={styles.title}>Customer</Text>
                   <Text style={styles.info}>{res[0].name}</Text>
                   <Text style={styles.info}>
                     {" "}
@@ -205,11 +190,6 @@ const InvoiceForDownload = ({ data }) => {
                       <Text style={styles.header}>Product Name</Text>
                     </Text>
                   </View>
-                  <View style={styles.tableCol}>
-                    <Text style={styles.tableCell}>
-                      <Text style={styles.header}>Shipping Option</Text>
-                    </Text>
-                  </View>
                 </View>
                 {res?.map((item, i) => (
                   <View key={i} style={styles.tableRow}>
@@ -218,11 +198,6 @@ const InvoiceForDownload = ({ data }) => {
                     </View>
                     <View style={styles.tableCol}>
                       <Text style={styles.tableCell}>{item.title} </Text>
-                    </View>
-                    <View style={styles.tableCol}>
-                      <Text style={styles.tableCell}>
-                        {item.shippingOption}
-                      </Text>
                     </View>
                   </View>
                 ))}

@@ -155,14 +155,14 @@ const OrderInvoice = () => {
         <div className="mb-4 mt-3 flex justify-between">
           <PDFDownloadLink
             document={<InvoiceForDownload data={filter} />}
-            fileName="Invoice"
+            fileName="Order"
           >
             {({ blob, url, loading, error }) =>
               loading ? (
                 "Loading..."
               ) : (
                 <button className="flex items-center text-sm leading-5 transition-colors duration-150 font-medium focus:outline-none px-5 py-2 rounded-md text-white bg-green-500 border border-transparent active:bg-green-600 hover:bg-green-600 focus:ring focus:ring-purple-300 w-auto cursor-pointer">
-                  Download Invoice{" "}
+                  Download Order{" "}
                   <span className="ml-2 text-base">
                     <IoCloudDownloadOutline />
                   </span>

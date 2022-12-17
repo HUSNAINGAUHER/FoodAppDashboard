@@ -75,7 +75,7 @@ const Orders = () => {
                 ref={searchRef}
                 type="search"
                 className="border h-12 text-sm focus:outline-none block w-full bg-gray-100 border-transparent focus:bg-white"
-                placeholder="Search by phone"
+                placeholder="Search by Order No"
               />
             </div>
             <div>
@@ -107,7 +107,7 @@ const Orders = () => {
               </Select>
             </div>
             <div>
-              <CSVDownloader data={orderData} filename={"orders"}>
+              <CSVDownloader data={data.orders} filename={"orders"}>
                 <button
                   type="button"
                   className="flex items-center justify-center text-sm leading-5 h-12 text-center transition-colors duration-150 font-medium focus:outline-none px-6 py-2 rounded-md text-white bg-green-500 border border-transparent active:bg-green-600 hover:bg-green-600 focus:ring focus:ring-purple-300 w-auto"
@@ -130,14 +130,14 @@ const Orders = () => {
           <Table>
             <TableHeader>
               <tr>
-                <TableCell>SR NO</TableCell>
+                <TableCell>Order NO</TableCell>
                 <TableCell>Time</TableCell>
                 <TableCell>Shipping Address</TableCell>
                 <TableCell>Phone</TableCell>
                 <TableCell>Delivery/Pickup</TableCell>
                 <TableCell className="text-center">Status</TableCell>
                 <TableCell className="text-center">Action</TableCell>
-                <TableCell className="text-center">Invoice</TableCell>
+                <TableCell className="text-center"></TableCell>
               </tr>
             </TableHeader>
             <OrderTable

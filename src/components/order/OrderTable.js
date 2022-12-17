@@ -25,7 +25,9 @@ const OrderTable = ({
         {orders?.map((order, i) => (
           <TableRow key={i + 1}>
             <TableCell>
-              <span className="font-semibold uppercase text-xs">{i + 1}</span>
+              <span className="font-semibold uppercase text-xs">
+                {order.invoice}
+              </span>
             </TableCell>
             <TableCell>
               <span className="text-sm">
