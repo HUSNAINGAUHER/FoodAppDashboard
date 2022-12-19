@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 import {
   Table,
   TableHeader,
@@ -10,20 +10,20 @@ import {
   Card,
   CardBody,
   Pagination,
-} from '@windmill/react-ui';
-import { FiPlus } from 'react-icons/fi';
+} from "@windmill/react-ui";
+import { FiPlus } from "react-icons/fi";
 
-import useAsync from '../hooks/useAsync';
-import useFilter from '../hooks/useFilter';
-import NotFound from '../components/table/NotFound';
-import Loading from '../components/preloader/Loading';
-import { SidebarContext } from '../context/SidebarContext';
-import PageTitle from '../components/Typography/PageTitle';
-import CategoryServices from '../services/CategoryServices';
-import CategoryTable from '../components/category/CategoryTable';
-import SelectCategory from '../components/form/SelectCategory';
-import MainDrawer from '../components/drawer/MainDrawer';
-import CategoryDrawer from '../components/drawer/CategoryDrawer';
+import useAsync from "../hooks/useAsync";
+import useFilter from "../hooks/useFilter";
+import NotFound from "../components/table/NotFound";
+import Loading from "../components/preloader/Loading";
+import { SidebarContext } from "../context/SidebarContext";
+import PageTitle from "../components/Typography/PageTitle";
+import CategoryServices from "../services/CategoryServices";
+import CategoryTable from "../components/category/CategoryTable";
+import SelectCategory from "../components/form/SelectCategory";
+import MainDrawer from "../components/drawer/MainDrawer";
+import CategoryDrawer from "../components/drawer/CategoryDrawer";
 
 const Category = () => {
   const { toggleDrawer } = useContext(SidebarContext);

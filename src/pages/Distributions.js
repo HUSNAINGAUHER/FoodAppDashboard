@@ -153,7 +153,7 @@ const Distribution = () => {
               serviceData.length && "hidden"
             } `}
           >
-            <NotFound title="Customer" />
+            <NotFound title="Distribution" />
           </div>
         </div>
       )}

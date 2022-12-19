@@ -68,7 +68,6 @@ const ProductDrawer = ({ id }) => {
                   name="end"
                   type="date"
                   defaultValue={end}
-                  value={end}
                 />
                 <Error errorName={errors.end} />
               </div>
