@@ -10,6 +10,8 @@ import { SidebarContext } from "../../context/SidebarContext";
 import MainDrawer from "../drawer/MainDrawer";
 import CategoryDrawer from "../drawer/CategoryDrawer";
 import ProductDrawer from "../drawer/CustomerDrawer";
+import Status from "../table/Status";
+import { SelectStatus } from "../form/SelectStatus";
 
 const CustomerTable = ({ customers, customerId, setCustomerId }) => {
   const { toggleModal, toggleDrawer } = useContext(SidebarContext);
@@ -52,6 +54,20 @@ const CustomerTable = ({ customers, customerId, setCustomerId }) => {
             </TableCell>
             <TableCell>
               <span className="text-sm font-medium">{user.phone}</span>
+            </TableCell>
+
+            <TableCell className="text-center">
+              <Status
+                status={
+                  user.verified === undefined || user.verified
+                    ? "Verified"
+                    : "Pending"
+                }
+              />
+            </TableCell>
+
+            <TableCell className="text-right">
+              <SelectStatus id={user._id} order={user} />
             </TableCell>
 
             <TableCell>

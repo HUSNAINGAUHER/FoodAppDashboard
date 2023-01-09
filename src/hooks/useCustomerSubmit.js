@@ -34,6 +34,7 @@ const useProductSubmit = (id) => {
       image: imageUrl,
       zipCode: data.zip,
       password: data.password,
+      verified: true,
     };
 
     if (id) {

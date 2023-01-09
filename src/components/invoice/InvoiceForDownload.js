@@ -129,84 +129,88 @@ const InvoiceForDownload = ({ data }) => {
   return (
     <>
       <Document>
-        {Object.keys(data).map((key) => {
-          const res = data[key];
-          console.log(res);
-          const status = res.length > 0 ? res[0].status : "";
-          const createdAt = res.length > 0 ? res[0].createdAt : "";
+        <Page size="A4" style={styles.page}>
+          {Object.keys(data).map((key) => {
+            const res = data[key];
+            console.log(res);
+            const status = res.length > 0 ? res[0].status : "";
+            const createdAt = res.length > 0 ? res[0].createdAt : "";
 
-          return res.length ? (
-            <Page size="A4" style={styles.page}>
-              <View style={styles.invoiceFirst}>
-                <View>
-                  <Text style={{ fontFamily: "Open Sans", fontWeight: "bold" }}>
-                    #{res[0].invoice}
-                  </Text>
-                  <Text style={styles.info}>Shipping Option</Text>
-                  <Text style={styles.info}>{res[0].shippingOption}</Text>
-                </View>
-
-                <View>
-                  <Text className="text-2xl font-bold cursor-pointer ml-4">
-                    Heavens
-                    <Text className="" style={{ color: "#07A32A" }}>
-                      Table
+            return res.length ? (
+              <>
+                <View style={styles.invoiceFirst}>
+                  <View>
+                    <Text
+                      style={{ fontFamily: "Open Sans", fontWeight: "bold" }}
+                    >
+                      #{res[0].invoice}
                     </Text>
-                    .
-                  </Text>
-                  <Text style={styles.info}>Deparment</Text>
-                  <Text style={styles.info}> {key}</Text>
-                </View>
-              </View>
+                    <Text style={styles.info}>Shipping Option</Text>
+                    <Text style={styles.info}>{res[0].shippingOption}</Text>
+                  </View>
 
-              <View style={styles.invoiceSecond}>
-                <View>
-                  <Text style={styles.title}>DATE</Text>
-                  <Text style={styles.info}>
-                    {createdAt !== undefined && (
-                      <Text>{dayjs(createdAt).format("MMMM D, YYYY")}</Text>
-                    )}
-                  </Text>
+                  <View>
+                    <Text className="text-2xl font-bold cursor-pointer ml-4">
+                      Heavens
+                      <Text className="" style={{ color: "#07A32A" }}>
+                        Table
+                      </Text>
+                      .
+                    </Text>
+                    <Text style={styles.info}>Deparment</Text>
+                    <Text style={styles.info}> {key}</Text>
+                  </View>
                 </View>
 
-                <View>
-                  <Text style={styles.title}>Customer</Text>
-                  <Text style={styles.info}>{res[0].name}</Text>
-                  <Text style={styles.info}>
-                    {" "}
-                    {res[0].address.substring(0, 25)}
-                  </Text>
-                </View>
-              </View>
-              <View style={styles.table}>
-                <View style={styles.tableRow}>
-                  <View style={styles.tableCol}>
-                    <Text style={styles.tableCell}>
-                      <Text style={styles.header}>Sr.</Text>
+                <View style={styles.invoiceSecond}>
+                  <View>
+                    <Text style={styles.title}>DATE</Text>
+                    <Text style={styles.info}>
+                      {createdAt !== undefined && (
+                        <Text>{dayjs(createdAt).format("MMMM D, YYYY")}</Text>
+                      )}
                     </Text>
                   </View>
-                  <View style={styles.tableCol}>
-                    <Text style={styles.tableCell}>
-                      <Text style={styles.header}>Product Name</Text>
+
+                  <View>
+                    <Text style={styles.title}>Customer</Text>
+                    <Text style={styles.info}>{res[0].name}</Text>
+                    <Text style={styles.info}>
+                      {" "}
+                      {res[0].address.substring(0, 25)}
                     </Text>
                   </View>
                 </View>
-                {res?.map((item, i) => (
-                  <View key={i} style={styles.tableRow}>
+                <View style={styles.table}>
+                  <View style={styles.tableRow}>
                     <View style={styles.tableCol}>
-                      <Text style={styles.tableCell}>{i + 1} </Text>
+                      <Text style={styles.tableCell}>
+                        <Text style={styles.header}>Sr.</Text>
+                      </Text>
                     </View>
                     <View style={styles.tableCol}>
-                      <Text style={styles.tableCell}>{item.title} </Text>
+                      <Text style={styles.tableCell}>
+                        <Text style={styles.header}>Product Name</Text>
+                      </Text>
                     </View>
                   </View>
-                ))}
-              </View>
-            </Page>
-          ) : (
-            <></>
-          );
-        })}
+                  {res?.map((item, i) => (
+                    <View key={i} style={styles.tableRow}>
+                      <View style={styles.tableCol}>
+                        <Text style={styles.tableCell}>{i + 1} </Text>
+                      </View>
+                      <View style={styles.tableCol}>
+                        <Text style={styles.tableCell}>{item.title} </Text>
+                      </View>
+                    </View>
+                  ))}
+                </View>
+              </>
+            ) : (
+              <></>
+            );
+          })}
+        </Page>
       </Document>
     </>
   );

@@ -102,6 +102,8 @@ const Customers = () => {
                 <TableCell>Name</TableCell>
                 <TableCell>Email</TableCell>
                 <TableCell>Phone</TableCell>
+                <TableCell>Approved</TableCell>
+
                 <TableCell className="text-right">Actions</TableCell>
               </tr>
             </TableHeader>

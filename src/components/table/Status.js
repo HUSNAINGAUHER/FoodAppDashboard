@@ -1,14 +1,15 @@
-import React from 'react';
-import { Badge } from '@windmill/react-ui';
+import React from "react";
+import { Badge } from "@windmill/react-ui";
 
 const Status = ({ status }) => {
   return (
     <>
       <span className="font-serif">
-        {status === 'Pending' && <Badge type="warning">{status}</Badge>}
-        {status === 'Processing' && <Badge>{status}</Badge>}
-        {status === 'Delivered' && <Badge type="success">{status}</Badge>}
-        {status === 'Cancel' && <Badge type="danger">{status}</Badge>}
+        {status === "Pending" && <Badge type="warning">{status}</Badge>}
+        {status === "Processing" && <Badge>{status}</Badge>}
+        {status === "Delivered" && <Badge type="success">{status}</Badge>}
+        {status === "Cancel" && <Badge type="danger">{status}</Badge>}
+        {status === "Verified" && <Badge type="success">{status}</Badge>}
       </span>
     </>
   );

@@ -19,6 +19,10 @@ const UserServices = {
   updateCustomer(id, data) {
     return requests.put(`/user/${id}`, { ...data });
   },
+
+  updateCustomerStatus(id, data) {
+    return requests.patch(`/user/${id}`, { ...data });
+  },
 };
 
 export default UserServices;
