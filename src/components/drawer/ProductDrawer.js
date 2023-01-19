@@ -16,6 +16,7 @@ import ParentCategory from "../category/ParentCategory";
 import useProductSubmit from "../../hooks/useProductSubmit";
 import useAsync from "../../hooks/useAsync";
 import DistributionService from "../../services/DepartmentService";
+import Selec from "react-select";
 
 const ProductDrawer = ({ id }) => {
   const {
@@ -28,13 +29,13 @@ const ProductDrawer = ({ id }) => {
     setImageUrl,
     tag,
     setTag,
+    dept,
+    setDept,
   } = useProductSubmit(id);
 
   const { data: departments } = useAsync(
     DistributionService.getAllDistribution
   );
-
-  console.log(departments);
 
   return (
     <>
@@ -75,7 +76,7 @@ const ProductDrawer = ({ id }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
+            {/* <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
               <LabelArea label="Product Description" />
               <div className="col-span-8 sm:col-span-4">
                 <Textarea
@@ -94,7 +95,7 @@ const ProductDrawer = ({ id }) => {
                 />
                 <Error errorName={errors.description} />
               </div>
-            </div>
+            </div> */}
 
             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
               <LabelArea label="Category" />
@@ -118,17 +119,17 @@ const ProductDrawer = ({ id }) => {
             <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
               <LabelArea label="Department" />
               <div className="col-span-8 sm:col-span-4">
-                <Select
-                  className="border h-12 text-sm focus:outline-none block w-full bg-gray-100 dark:bg-white border-transparent focus:bg-white"
-                  name="department"
-                  {...register("department", {
-                    required: "department is required!",
-                  })}
-                >
-                  {departments?.map((d) => (
-                    <option value={d.name}>{d.name}</option>
-                  ))}
-                </Select>
+                <Selec
+                  options={departments.map((I) => ({
+                    label: I.name,
+                    value: I.name,
+                  }))}
+                  isMulti={true}
+                  value={dept}
+                  onChange={(e) => {
+                    setDept(e);
+                  }}
+                />
                 <Error errorName={errors.department} />
               </div>
             </div>

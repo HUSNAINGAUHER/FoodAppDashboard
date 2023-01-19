@@ -1,8 +1,8 @@
-import requests from './httpService';
+import requests from "./httpService";
 
 const AdminServices = {
   registerAdmin(body) {
-    return requests.post('/admin/register', body);
+    return requests.post("/admin/register", body);
   },
 
   loginAdmin(body) {
@@ -10,22 +10,22 @@ const AdminServices = {
   },
 
   forgetPassword(body) {
-    return requests.put('/admin/forget-password', body);
+    return requests.put("/admin/forget-password", body);
   },
 
   resetPassword(body) {
-    return requests.put('/admin/reset-password', body);
+    return requests.put("/admin/reset-password", body);
   },
 
   signUpWithProvider(body) {
-    return requests.post('/admin/signup', body);
+    return requests.post("/admin/signup", body);
   },
 
   addStaff(body) {
-    return requests.post('/admin/add', body);
+    return requests.post("/admin/add", body);
   },
   getAllStaff(body) {
-    return requests.post('/admin', body);
+    return requests.post("/admin", body);
   },
   getStaffById(id, body) {
     return requests.post(`/admin/${id}`, body);

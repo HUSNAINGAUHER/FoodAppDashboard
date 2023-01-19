@@ -49,7 +49,11 @@ const ProductTable = ({ products }) => {
               <span className="text-sm">{product.quantity}</span>
             </TableCell>
             <TableCell>
-              <Badge type="success">{product.department}</Badge>
+              <div className="flex gap-x-2">
+                {product.department.map((m) => (
+                  <Badge type="success">{m}</Badge>
+                ))}
+              </div>
             </TableCell>
 
             <TableCell>

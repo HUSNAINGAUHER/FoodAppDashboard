@@ -92,38 +92,41 @@ const Customers = () => {
 
       {loading ? (
         <Loading loading={loading} />
-      ) : serviceData.length !== 0 ? (
-        <TableContainer className="mb-8">
-          <Table>
-            <TableHeader>
-              <tr>
-                <TableCell>ID</TableCell>
-                <TableCell>Joining Date</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell>Phone</TableCell>
-                <TableCell>Approved</TableCell>
-
-                <TableCell className="text-right">Actions</TableCell>
-              </tr>
-            </TableHeader>
-            <CustomerTable
-              customers={dataTable}
-              customerId={id}
-              setCustomerId={setID}
-            />
-          </Table>
-          <TableFooter>
-            <Pagination
-              totalResults={totalResults}
-              resultsPerPage={resultsPerPage}
-              onChange={handleChangePage}
-              label="Table navigation"
-            />
-          </TableFooter>
-        </TableContainer>
       ) : (
-        <NotFound title="Customer" />
+        <>
+          <TableContainer
+            className={`mb-8 ${serviceData.length === 0 && "hidden"}`}
+          >
+            <Table>
+              <TableHeader>
+                <tr>
+                  <TableCell>ID</TableCell>
+                  <TableCell>Joining Date</TableCell>
+                  <TableCell>Name</TableCell>
+                  <TableCell>Email</TableCell>
+                  <TableCell>Phone</TableCell>
+                  <TableCell>Approved</TableCell>
+
+                  <TableCell className="text-right">Actions</TableCell>
+                </tr>
+              </TableHeader>
+              <CustomerTable
+                customers={dataTable}
+                customerId={id}
+                setCustomerId={setID}
+              />
+            </Table>
+            <TableFooter>
+              <Pagination
+                totalResults={totalResults}
+                resultsPerPage={resultsPerPage}
+                onChange={handleChangePage}
+                label="Table navigation"
+              />
+            </TableFooter>
+          </TableContainer>
+          {serviceData.length === 0 && <NotFound title="Customer" />}
+        </>
       )}
     </>
   );

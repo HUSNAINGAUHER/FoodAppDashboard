@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { useParams } from "react-router";
 import ReactToPrint from "react-to-print";
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { FiPrinter } from "react-icons/fi";
 import { IoCloudDownloadOutline } from "react-icons/io5";
 import {
@@ -34,16 +34,15 @@ const OrderInvoice = () => {
 
   if (d) {
     d.cart?.map((m) => {
-      if (m.department in filter) {
-        filter[m.department].push(m);
+      if (m.department.toString() in filter) {
+        filter[m.department.toString()].push(m);
       } else {
-        filter[m.department] = [];
-        filter[m.department].push({ ...m, s: d.status, ...d });
+        filter[m.department.toString()] = [];
+        filter[m.department.toString()].push({ ...m, s: d.status, ...d });
       }
     });
   }
-
-  console.log(filter);
+  const [s, ss] = useState(false);
 
   return (
     <div>
@@ -152,9 +151,13 @@ const OrderInvoice = () => {
         })}
       </Document>
       {!loading && (
-        <div className="mb-4 mt-3 flex justify-between">
+        <div className="mb-4 mt-3 justify-between">
+          <div className="flex gap-x-3 my-2">
+            <input type="checkbox" onChange={(e) => ss(e.target.checked)} />
+            <div> Print on Separate Page</div>
+          </div>
           <PDFDownloadLink
-            document={<InvoiceForDownload data={filter} />}
+            document={<InvoiceForDownload data={filter} separate={s} />}
             fileName="Order"
           >
             {({ blob, url, loading, error }) =>

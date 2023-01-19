@@ -2,7 +2,6 @@ import React from "react";
 import { TableCell, TableBody, TableRow } from "@windmill/react-ui";
 
 const Invoice = ({ data, shippingOption }) => {
-  console.log(data);
   return (
     <>
       <TableBody className="bg-white dark:bg-gray-800 divide-y divide-gray-100 text-serif text-sm ">

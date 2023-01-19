@@ -8,6 +8,8 @@ const useProductSubmit = (id) => {
   const [imageUrl, setImageUrl] = useState("");
   const [children, setChildren] = useState("");
   const [tag, setTag] = useState([]);
+  const [dept, setDept] = useState([]);
+
   const { isDrawerOpen, closeDrawer, setIsUpdate } = useContext(SidebarContext);
 
   const {
@@ -35,7 +37,7 @@ const useProductSubmit = (id) => {
       discount: 0,
       image: imageUrl,
       tag: JSON.stringify(tag),
-      department: data.department,
+      department: JSON.stringify(dept.map((I) => I.value)),
     };
 
     if (id) {
@@ -105,7 +107,8 @@ const useProductSubmit = (id) => {
             setValue("quantity", res.quantity);
             setValue("originalPrice", res.originalPrice);
             setValue("salePrice", res.price);
-            setValue("department", res.department);
+            console.log(res.department);
+            setDept(res.department.map((I) => ({ label: I, value: I })));
             setTag(JSON.parse(res.tag));
             setImageUrl(res.image);
           }
@@ -131,6 +134,8 @@ const useProductSubmit = (id) => {
     setImageUrl,
     tag,
     setTag,
+    dept,
+    setDept,
   };
 };
 
