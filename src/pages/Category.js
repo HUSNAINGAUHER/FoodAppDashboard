@@ -54,20 +54,7 @@ const Category = () => {
             onSubmit={handleSubmitCategory}
             className="py-3 grid gap-4 lg:gap-6 xl:gap-6 md:flex xl:flex"
           >
-            <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
-              <Input
-                ref={categoryRef}
-                className="border h-12 text-sm focus:outline-none block w-full bg-gray-100 border-transparent focus:bg-white"
-                type="search"
-                name="search"
-                placeholder="Search by category type"
-              />
-              <button
-                type="submit"
-                className="absolute right-0 top-0 mt-5 mr-1"
-              ></button>
-            </div>
-            <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
+            <div className=" md:flex-grow lg:flex-grow xl:flex-grow">
               <SelectCategory setCategory={setFilter} />
             </div>
             <div className="w-full md:w-56 lg:w-56 xl:w-56">
@@ -96,6 +83,8 @@ const Category = () => {
                 <TableCell>ID</TableCell>
                 <TableCell>Icon</TableCell>
                 <TableCell>Title</TableCell>
+                <TableCell>Limit</TableCell>
+                <TableCell>For Baby</TableCell>
 
                 <TableCell className="text-center">Published</TableCell>
                 <TableCell className="text-right">Actions</TableCell>

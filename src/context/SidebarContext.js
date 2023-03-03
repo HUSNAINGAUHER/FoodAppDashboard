@@ -1,4 +1,4 @@
-import React, { useState, createContext, useRef } from 'react';
+import React, { useState, createContext, useRef } from "react";
 
 // create context
 export const SidebarContext = createContext();
@@ -11,16 +11,18 @@ export const SidebarProvider = ({ children }) => {
   const resultsPerPage = 20;
   const [limitData, setLimitData] = useState(20);
   const [isBulkDrawerOpen, setIsBulkDrawerOpen] = useState(false);
-  const [lang, setLang] = useState('');
-  const [time, setTime] = useState('');
-  const [sortedField, setSortedField] = useState('');
+  const [lang, setLang] = useState("");
+  const [time, setTime] = useState("");
+  const [sortedField, setSortedField] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [searchText, setSearchText] = useState(null);
-  const [zone, setZone] = useState('');
-  const [status, setStatus] = useState('');
-  const [source, setSource] = useState('');
+  const [zone, setZone] = useState("");
+  const [status, setStatus] = useState("");
+  const [source, setSource] = useState("");
   const [category, setCategory] = useState(null);
-  const searchRef = useRef('');
+  const [department, setDepartment] = useState(null);
+
+  const searchRef = useRef("");
 
   const closeSidebar = () => setIsSidebarOpen(false);
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
@@ -107,6 +109,8 @@ export const SidebarProvider = ({ children }) => {
         resultsPerPage,
         limitData,
         setLimitData,
+        department,
+        setDepartment,
       }}
     >
       {children}

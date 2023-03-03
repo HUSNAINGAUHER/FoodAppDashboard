@@ -14,6 +14,8 @@ import {
   IoClose,
 } from "react-icons/io5";
 
+import requests from "../../services/httpService";
+
 import { AdminContext } from "../../context/AdminContext";
 import { SidebarContext } from "../../context/SidebarContext";
 
@@ -82,6 +84,14 @@ const Header = () => {
                 )}
               </button>
             </li>
+            <li className="justify-between font-serif font-medium py-2 pl-4 transition-colors duration-150 hover:bg-gray-100 text-gray-500 hover:text-green-500 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200">
+              <a href="https://shelfly.io/admin">
+                <span className="flex items-center text-sm">
+                  <IoGridOutline className="w-4 h-4 mr-3" aria-hidden="true" />
+                  <span>Customer Dashboard</span>
+                </span>
+              </a>
+            </li>
 
             {/* <!-- Profile menu --> */}
             <li className="relative inline-block text-left" ref={pRef}>
@@ -112,6 +122,7 @@ const Header = () => {
                       </span>
                     </Link>
                   </li>
+
                   <li className="justify-between font-serif font-medium py-2 pl-4 transition-colors duration-150 hover:bg-gray-100 text-gray-500 hover:text-green-500 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200">
                     <Link to="/edit-profile">
                       <span className="flex items-center text-sm">

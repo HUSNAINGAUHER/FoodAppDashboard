@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   Table,
   TableHeader,
@@ -24,7 +24,9 @@ import ProductServices from "../services/ProductServices";
 import PageTitle from "../components/Typography/PageTitle";
 import { SidebarContext } from "../context/SidebarContext";
 import ProductTable from "../components/product/ProductTable";
-import SelectCategory from "../components/form/SelectCategory";
+import SelectCategory, {
+  SelectDepartment,
+} from "../components/form/SelectCategory";
 import MainDrawer from "../components/drawer/MainDrawer";
 import ProductDrawer from "../components/drawer/ProductDrawer";
 
@@ -40,6 +42,8 @@ const Products = () => {
     handleSubmitForAll,
     sortedField,
     setSortedField,
+    setDepartment,
+    department,
     limitData,
   } = useContext(SidebarContext);
 
@@ -48,15 +52,22 @@ const Products = () => {
       page: currentPage,
       limit: limitData,
       category: category,
-
+      department: department,
       title: searchText,
       price: sortedField,
     })
   );
 
+  useEffect(() => {
+    setSortedField(!sortedField);
+    setSortedField(!sortedField);
+  }, [department]);
+
   const { serviceData, handleOnDrop, handleUploadProducts } = useFilter(
     data?.products
   );
+
+  console.log(department);
 
   return (
     <>
@@ -86,6 +97,9 @@ const Products = () => {
             </div>
             <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
               <SelectCategory setCategory={setCategory} />
+            </div>
+            <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
+              <SelectDepartment setDepartment={setDepartment} />
             </div>
 
             <div className="w-full md:w-56 lg:w-56 xl:w-56">

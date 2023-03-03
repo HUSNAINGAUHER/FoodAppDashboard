@@ -7,7 +7,7 @@ import Title from "../form/Title";
 import Error from "../form/Error";
 import LabelArea from "../form/LabelArea";
 import InputArea from "../form/InputArea";
-import InputValue from "../form/InputValue";
+import InputValue, { Checkbox } from "../form/InputValue";
 import SelectOption from "../form/SelectOption";
 import DrawerButton from "../form/DrawerButton";
 import Uploader from "../image-uploader/Uploader";
@@ -124,6 +124,25 @@ const ProductDrawer = ({ id }) => {
                   placeholder=""
                 />
                 <Error errorName={errors.zip} />
+              </div>
+
+              <LabelArea label="Do have Babies?" />
+              <div className="col-span-1 grid grid-cols-2">
+                <Checkbox
+                  register={register}
+                  label="Yes"
+                  name="baby"
+                  required={false}
+                  type="radio"
+                />
+                <Checkbox
+                  register={register}
+                  label="No"
+                  name="baby"
+                  required={false}
+                  type="radio"
+                />
+                {/* <Error errorName={!!errors.baby} /> */}
               </div>
             </div>
           </div>

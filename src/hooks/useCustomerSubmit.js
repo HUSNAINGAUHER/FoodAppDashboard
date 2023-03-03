@@ -35,6 +35,7 @@ const useProductSubmit = (id) => {
       zipCode: data.zip,
       password: data.password,
       verified: true,
+      baby: data.baby === "Yes",
     };
 
     if (id) {
@@ -84,6 +85,7 @@ const useProductSubmit = (id) => {
             setValue("phone", res.phone);
             setValue("zip", res.zipCode);
             setValue("address", res.address);
+            setValue("baby", res.baby ? "Yes" : "No");
             setImageUrl(res.image);
           }
         })

@@ -1,8 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import useAsync from '../../hooks/useAsync';
-import CategoryServices from '../../services/CategoryServices';
-
+import useAsync from "../../hooks/useAsync";
+import CategoryServices from "../../services/CategoryServices";
 
 const ParentCategory = () => {
   const { data } = useAsync(CategoryServices.getAllCategory); //   console.log(value);
@@ -13,6 +12,9 @@ const ParentCategory = () => {
           {parent.parent}
         </option>
       ))}
+      <option key={""} value="">
+        All
+      </option>
     </>
   );
 };
