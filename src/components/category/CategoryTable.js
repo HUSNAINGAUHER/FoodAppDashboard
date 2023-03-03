@@ -1,12 +1,12 @@
-import React from 'react';
-import { TableBody, TableRow, TableCell, Avatar } from '@windmill/react-ui';
+import React from "react";
+import { TableBody, TableRow, TableCell, Avatar } from "@windmill/react-ui";
 
-import MainModal from '../modal/MainModal';
-import MainDrawer from '../drawer/MainDrawer';
-import ShowHideButton from '../table/ShowHideButton';
-import CategoryDrawer from '../drawer/CategoryDrawer';
-import useToggleDrawer from '../../hooks/useToggleDrawer';
-import EditDeleteButton from '../table/EditDeleteButton';
+import MainModal from "../modal/MainModal";
+import MainDrawer from "../drawer/MainDrawer";
+import ShowHideButton from "../table/ShowHideButton";
+import CategoryDrawer from "../drawer/CategoryDrawer";
+import useToggleDrawer from "../../hooks/useToggleDrawer";
+import EditDeleteButton from "../table/EditDeleteButton";
 
 const CategoryTable = ({ categories }) => {
   const { title, serviceId, handleModalOpen, handleUpdate } = useToggleDrawer();
@@ -32,8 +32,12 @@ const CategoryTable = ({ categories }) => {
               />
             </TableCell>
 
-           
             <TableCell className="text-sm">{parent.parent}</TableCell>
+            <TableCell className="text-sm">{parent.limit}</TableCell>
+            <TableCell className="text-sm">
+              {parent.baby ? "yes" : "no"}
+            </TableCell>
+
             <TableCell>
               <ShowHideButton id={parent._id} status={parent.status} />
             </TableCell>

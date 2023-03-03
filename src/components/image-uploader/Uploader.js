@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useDropzone } from 'react-dropzone';
-import { FiUploadCloud } from 'react-icons/fi';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useDropzone } from "react-dropzone";
+import { FiUploadCloud } from "react-icons/fi";
 
 const Uploader = ({ setImageUrl, imageUrl }) => {
   const [files, setFiles] = useState([]);
   const uploadUrl = process.env.REACT_APP_CLOUDINARY_URL;
-  const upload_Preset = 'ml_default';
+  const upload_Preset = "ml_default";
 
   const { getRootProps, getInputProps } = useDropzone({
-    accept: 'image/*',
+    accept: "image/*",
     multiple: false,
     maxSize: 500000,
     onDrop: (acceptedFiles) => {
@@ -23,8 +23,8 @@ const Uploader = ({ setImageUrl, imageUrl }) => {
     },
   });
 
-   const getBase64 = file => {
-    return new Promise(resolve => {
+  const getBase64 = (file) => {
+    return new Promise((resolve) => {
       let fileInfo;
       let baseURL = "";
       // Make new FileReader
@@ -36,25 +36,23 @@ const Uploader = ({ setImageUrl, imageUrl }) => {
       // on reader load somthing...
       reader.onload = () => {
         // Make a fileInfo Object
-        console.log("Called", reader);
+
         baseURL = reader.result;
-        console.log(baseURL);
         resolve(baseURL);
       };
       console.log(fileInfo);
     });
   };
 
-  useEffect( () => {
+  useEffect(() => {
     if (files) {
       files.forEach((file) => {
-      getBase64(file).then(d => {
-        setImageUrl(d)
-      })
-    })
-  }
+        getBase64(file).then((d) => {
+          setImageUrl(d);
+        });
+      });
+    }
 
-    
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [files]);
 

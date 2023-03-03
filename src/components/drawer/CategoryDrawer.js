@@ -10,6 +10,7 @@ import SelectOption from "../form/SelectOption";
 import DrawerButton from "../form/DrawerButton";
 import Uploader from "../image-uploader/Uploader";
 import useCategorySubmit from "../../hooks/useCategorySubmit";
+import InputValue, { Checkbox } from "../form/InputValue";
 
 const CategoryDrawer = ({ id }) => {
   const {
@@ -60,18 +61,39 @@ const CategoryDrawer = ({ id }) => {
                 />
                 <Error errorName={errors.parent} />
               </div>
-            </div>
 
-            {/* <div className="grid grid-cols-6 gap-3 md:gap-5 xl:gap-6 lg:gap-6 mb-6">
-              <LabelArea label="Child Category" />
+              <LabelArea label="Limit" />
               <div className="col-span-8 sm:col-span-4">
-                <ReactTagInput
-                  placeholder="Child category  (Write then press enter to add new child category )"
-                  tags={children}
-                  onChange={(child) => setChildren(child)}
+                <InputValue
+                  register={register}
+                  label="Category Limit"
+                  name="limit"
+                  type="number"
+                  required
+                  placeholder="Category limit"
                 />
+                <Error errorName={errors.limit} />
               </div>
-            </div> */}
+
+              <LabelArea label="For Babies?" />
+              <div className="col-span-1 grid grid-cols-2">
+                <Checkbox
+                  register={register}
+                  label="Yes"
+                  name="baby"
+                  required={false}
+                  type="radio"
+                />
+                <Checkbox
+                  register={register}
+                  label="No"
+                  name="baby"
+                  required={false}
+                  type="radio"
+                />
+                {/* <Error errorName={!!errors.baby} /> */}
+              </div>
+            </div>
           </div>
 
           <DrawerButton id={id} title="Category" />

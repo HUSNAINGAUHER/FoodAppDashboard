@@ -21,6 +21,7 @@ const SelectStatus1 = ({ id, order }) => {
     <>
       <Select
         onChange={(e) => handleChangeStatus(id, e.target.value)}
+        defaultValue={order?.status}
         className="border border-gray-50 bg-gray-50 dark:border-gray-700 h-8 rounded-md text-xs focus:border-gray-400 focus:outline-none"
       >
         <option value="status" defaultValue hidden>
@@ -64,6 +65,7 @@ export const SelectStatus = ({ id, order }) => {
       <Select
         onChange={(e) => handleChangeStatus(id, e.target.value)}
         className="border border-gray-50 bg-gray-50 dark:border-gray-700 h-8 rounded-md text-xs focus:border-gray-400 focus:outline-none"
+        value={order?.verified ? "Approved" : "Pending"}
       >
         <option value="status" defaultValue hidden>
           {order?.verified === undefined || order?.verified
